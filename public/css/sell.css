@@ -1,0 +1,80 @@
+.sell__content {
+    margin: 0 auto;
+    width: 40%;
+
+}
+
+.sell__heading {
+    text-align: center;
+}
+
+.sell__content h2 {
+    padding: 1.5em 0;
+}
+
+.form__group {
+    margin-bottom: 3em;
+}
+
+.form__group p {
+    margin: 0;
+    font-size: 1.5rem;
+    color: gray;
+}
+
+.line {
+    height: 1px;
+    background-color: gray;
+    margin-bottom: 1em;
+}
+
+.form__group-input--img {
+    text-align: center;
+    width: 100%;
+    border: 2px dotted gray;
+    border-radius: 3px;
+    padding: 2em 0;
+}
+
+.form__group-input--img input {
+    display: none;
+}
+
+.form__group-input--img label {
+    color: red;
+    border: 1px solid red;
+    padding: 0.3em 1em;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.form__group-input {
+    margin-bottom: 1em;
+
+}
+
+.form__group label {
+    font-weight: bold;
+}
+
+.form__group-input input {
+    width: 100%;
+    padding: 0.7em;
+    border: 1px solid gray;
+    border-radius: 3px;
+}
+
+.form__button {
+    margin: 4em 0 1em;
+}
+
+.form__button-submit {
+    width: 100%;
+    padding: 0.7em 0;
+    border: none;
+    border-radius: 3px;
+    background-color: #FF5555;
+    color: #fff;
+    cursor: pointer;
+}

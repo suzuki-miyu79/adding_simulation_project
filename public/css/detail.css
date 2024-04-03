@@ -1,0 +1,17 @@
+.detail__content {
+    display: flex;
+    justify-content: center;
+}
+
+.detail__content-left,
+.detail__content-right {
+    width: 35%;
+    overflow: hidden;
+    margin: 5em;
+}
+
+.detail__img {
+    width: 100%;
+    aspect-ratio: 2 / 2.5;
+    background-color: #D9D9D9;
+}
