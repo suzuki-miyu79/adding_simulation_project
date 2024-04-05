@@ -25,7 +25,8 @@
 }
 
 .detail__item-name,
-.detail__item-brand {
+.detail__item-brand,
+.detail__item-description--text {
     margin: 0;
 }
 
@@ -47,4 +48,28 @@
 .detail__item-info {
     font-size: 1.3rem;
     font-weight: bold;
+}
+
+.detail__item-description {
+    margin: 0.7em 0;
+}
+
+.detail__item-description--text {
+    margin-bottom: 3em;
+}
+
+.detail__group-item-info {
+    margin-bottom: 1.8em;
+}
+
+.detail__group-item-info label {
+    font-weight: bold;
+    margin-right: 1.5em;
+}
+
+.detail__group-item-info--category {
+    background-color: #D9D9D9;
+    border-radius: 25px;
+    padding: 0.1em 1em;
+
 }

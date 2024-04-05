@@ -33,8 +33,8 @@
             <p class="detail__item-info">商品の情報</p>
             <div class="detail__group-item-info">
                 <label for="">カテゴリー</label>
-                <span>{{ $item->childCategory->parentCategory->name }}</span>
-                <span>{{ $item->childCategory->name }}</span>
+                <span class="detail__group-item-info--category">{{ $item->childCategory->parentCategory->name }}</span>
+                <span class="detail__group-item-info--category">{{ $item->childCategory->name }}</span>
             </div>
             <div class="detail__group-item-info">
                 <label for="">商品の状態</label>
