@@ -14,4 +14,37 @@
     width: 100%;
     aspect-ratio: 2 / 2.5;
     background-color: #D9D9D9;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.detail__img img {
+    max-width: 100%;
+}
+
+.detail__item-name,
+.detail__item-brand {
+    margin: 0;
+}
+
+.detail__item-brand {
+    font-size: 0.8rem;
+}
+
+.detail__button-submit {
+    width: 100%;
+    padding: 0.3em 0;
+    border: none;
+    border-radius: 3px;
+    background-color: #FF5555;
+    color: #fff;
+    cursor: pointer;
+}
+
+.detail__item-description,
+.detail__item-info {
+    font-size: 1.3rem;
+    font-weight: bold;
 }

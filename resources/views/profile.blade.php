@@ -11,8 +11,10 @@
         </div>
         <form method="POST" action="{{ route('profile.setting') }}" enctype="multipart/form-data">
             @csrf
-            <div class="user_img">
-                <img id="profile_preview" src="" alt="">
+            <div class="user__img">
+                <div class="user__img-img">
+                    <img id="profile_preview" src="" alt="">
+                </div>
                 <label>
                     <input type="file" id="profile_image" name="profile_image" onchange="previewImage(event)">画像を選択する
                 </label>

@@ -7,7 +7,9 @@
 @section('content')
     <div class="mypage__content">
         <div class="mypage__top">
-            <img src="{{ asset($user->image) }}" alt="Profile Image">
+            <div class="mypage__top-img">
+                <img src="{{ asset($user->image) }}" alt="profileImg">
+            </div>
             <div class="mypage__top-name">
                 @if ($user->name)
                     <p>{{ $user->name }}</p>

@@ -12,8 +12,9 @@
             </div>
         </div>
         <div class="detail__content-right">
-            <h2 class="detail__item-name"></h2>
-            <p class="detail__brand-name"></p>
+            <h2 class="detail__item-name">{{ $item->name }}</h2>
+            <p class="detail__item-brand">ブランド名</p>
+            <p class="detail__item-price">¥(値段)</p>
             <div class="detail__group">
                 <div class="detail__group-favorite">
                     <img src="" alt="">

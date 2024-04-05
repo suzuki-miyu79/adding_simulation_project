@@ -17,13 +17,17 @@
 
 }
 
-.user_img {
+.user__img {
     display: flex;
     align-items: center;
     margin-bottom: 3em;
 }
 
-.user_img img {
+.user__img-img {
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-radius: 50%;
     width: 20%;
     aspect-ratio: 1 / 1;
@@ -31,11 +35,15 @@
     margin-right: 2em;
 }
 
-.user_img input {
+.user__img-img img {
+    width: 100%;
+}
+
+.user__img input {
     display: none;
 }
 
-.user_img label {
+.user__img label {
     color: red;
     border: 1px solid red;
     padding: 0.3em 1em;
