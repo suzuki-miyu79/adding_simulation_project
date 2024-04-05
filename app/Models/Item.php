@@ -20,10 +20,17 @@ class Item extends Model
         'seller_user_id',
     ];
 
-    // Child_category モデルとのリレーションシップ
-    public function child_category()
+    // ChildCategory モデルとのリレーションシップ
+    public function childCategory()
     {
         return $this->belongsTo(ChildCategory::class, 'child_category_id');
+    }
+
+    // ParentCategoryとのリレーションシップを追加
+    public function parentCategory()
+    {
+        return $this->belongsTo(ParentCategory::class, 'child_category_id')// ChildCategoryモデル経由での取得
+            ->via('childCategory'); // 中間テーブルのリレーション名
     }
 
     // Condition モデルとのリレーションシップ

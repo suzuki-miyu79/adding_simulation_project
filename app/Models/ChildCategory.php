@@ -15,8 +15,8 @@ class ChildCategory extends Model
         'name',
     ];
 
-    // Parent_category モデルとのリレーションシップ
-    public function parent_categories()
+    // ParentCategory モデルとのリレーションシップ
+    public function parentCategory()
     {
         return $this->belongsTo(ParentCategory::class);
     }

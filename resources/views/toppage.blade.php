@@ -14,14 +14,13 @@
         </nav>
         <div class="toppage__nav-line"></div>
         <div class="item__list">
-            <div class="item-card"></div>
-            <div class="item-card"></div>
-            <div class="item-card"></div>
-            <div class="item-card"></div>
-            <div class="item-card"></div>
-            <div class="item-card"></div>
-            <div class="item-card"></div>
-            <div class="item-card"></div>
+            @foreach ($items as $item)
+                <div class="item-card">
+                    <a href="{{ route('item.index', ['item_id' => $item->id]) }}">
+                        <img src="{{ $item->image }}" alt="{{ $item->name }}">
+                    </a>
+                </div>
+            @endforeach
         </div>
     </div>
 @endsection

@@ -8,7 +8,7 @@
     <div class="detail__content">
         <div class="detail__content-left">
             <div class="detail__img">
-                <img src="" alt="商品画像">
+                <img src="{{ $item->image }}" alt="商品画像">
             </div>
         </div>
         <div class="detail__content-right">
@@ -28,16 +28,16 @@
                 <button class="detail__button-submit">購入する</button>
             </div>
             <p class="detail__item-description">商品説明</p>
-            <p class="detail__item-description--text"></p>
+            <p class="detail__item-description--text">{{ $item->description }}</p>
             <p class="detail__item-info">商品の情報</p>
             <div class="detail__group-item-info">
                 <label for="">カテゴリー</label>
-                <span></span>
-                <span></span>
+                <span>{{ $item->childCategory->parentCategory->name }}</span>
+                <span>{{ $item->childCategory->name }}</span>
             </div>
             <div class="detail__group-item-info">
                 <label for="">商品の状態</label>
-                <span></span>
+                <span>{{ $item->condition->name }}</span>
             </div>
         </div>
     </div>

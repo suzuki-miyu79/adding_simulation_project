@@ -14,8 +14,8 @@ class ParentCategory extends Model
         'name',
     ];
 
-    // Child_category モデルとのリレーションシップ
-    public function child_categories()
+    // ChildCategory モデルとのリレーションシップ
+    public function childCategories()
     {
         return $this->hasMany(ChildCategory::class);
     }
