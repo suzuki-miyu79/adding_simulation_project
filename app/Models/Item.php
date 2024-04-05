@@ -18,13 +18,12 @@ class Item extends Model
         'price',
         'image',
         'seller_user_id',
-        'buyer_user_id',
     ];
 
     // Child_category モデルとのリレーションシップ
     public function child_category()
     {
-        return $this->belongsTo(Child_category::class, 'child_category_id');
+        return $this->belongsTo(ChildCategory::class, 'child_category_id');
     }
 
     // Condition モデルとのリレーションシップ
@@ -39,9 +38,10 @@ class Item extends Model
         return $this->belongsTo(User::class, 'seller_user_id');
     }
 
-    public function buyer()
+    // Purchase モデルとのリレーションシップ
+    public function purchases()
     {
-        return $this->belongsTo(User::class, 'buyer_user_id');
+        return $this->hasMany(Purchase::class);
     }
 
     // Comment モデルとのリレーションシップ

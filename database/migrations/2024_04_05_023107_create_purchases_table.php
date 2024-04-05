@@ -10,15 +10,10 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('items', function (Blueprint $table) {
+        Schema::create('purchases', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('child_category_id')->constrained();
-            $table->foreignId('condition_id')->constrained();
-            $table->string('name', 191);
-            $table->text('description');
-            $table->decimal('price', 10, 0);
-            $table->string('image', 255);
-            $table->foreignId('seller_user_id')->constrained('users');
+            $table->foreignId('item_id')->constrained();
+            $table->foreignId('buyer_user_id')->constrained('users');
             $table->timestamp('created_at')->useCurrent()->nullable();
             $table->timestamp('updated_at')->useCurrent()->nullable();
         });
@@ -29,6 +24,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('items');
+        Schema::dropIfExists('purchases');
     }
 };

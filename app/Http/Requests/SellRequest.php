@@ -22,12 +22,12 @@ class SellRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'category' => ['required'],
+            // 'category' => ['required'],
             'condition' => ['required'],
             'name' => ['required', 'string', 'max:191'],
             'description' => ['required'],
             'price' => ['required'],
-            'image' => ['required'],
+            // 'image' => ['required'],
         ];
     }
 

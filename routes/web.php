@@ -44,6 +44,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/sell', [SellController::class, 'index']);
     // 出品処理
     Route::post('/sell', [SellController::class, 'store'])->name('sell');
+    // カテゴリー1に関連するカテゴリー2の一覧取得
+    Route::get('/sell/parent_categories/{parentCategoryId}/children', [SellController::class, 'getChildCategories']);
 });
 
 require __DIR__ . '/auth.php';

@@ -29,11 +29,17 @@
 }
 
 .form__group-input--img {
-    text-align: center;
     width: 100%;
+    height: 10em;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: 2px dotted gray;
     border-radius: 3px;
-    padding: 2em 0;
+
 }
 
 .form__group-input--img input {
@@ -51,14 +57,16 @@
 
 .form__group-input {
     margin-bottom: 1em;
-
+    display: flex;
+    flex-direction: column;
 }
 
 .form__group label {
     font-weight: bold;
 }
 
-.form__group-input input {
+.form__group-input input,
+.form__group-input select {
     width: 100%;
     padding: 0.7em;
     border: 1px solid gray;

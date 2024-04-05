@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Parent_category extends Model
+class ParentCategory extends Model
 {
     use HasFactory;
 
@@ -17,6 +17,6 @@ class Parent_category extends Model
     // Child_category モデルとのリレーションシップ
     public function child_categories()
     {
-        return $this->hasMany(Child_category::class);
+        return $this->hasMany(ChildCategory::class);
     }
 }

@@ -56,6 +56,12 @@ class User extends Authenticatable
         return $this->hasMany(Item::class);
     }
 
+    // Purchase モデルとのリレーションシップ
+    public function purchases()
+    {
+        return $this->hasMany(Purchase::class);
+    }
+
     // Comment モデルとのリレーションシップ
     public function comments()
     {
