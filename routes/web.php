@@ -23,7 +23,7 @@ Route::middleware('auth')->group(function () {
     // コメント送信
     Route::post('/item/{item_id}', [ItemController::class, 'comment'])->name('item.comment');
     // 購入ページ
-    Route::get('/purchase/{item_id}', [PurchaseController::class, 'index']);
+    Route::get('/purchase/{item_id}', [PurchaseController::class, 'index'])->name('purchase.index');
     // 購入処理
     Route::post('/purchase/{item_id}', [PurchaseController::class, 'purchase'])->name('purchase');
     // 住所変更ページ

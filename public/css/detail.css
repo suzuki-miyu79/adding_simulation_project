@@ -34,7 +34,10 @@
     font-size: 0.8rem;
 }
 
-.detail__button-submit {
+.detail__button a {
+    display: block;
+    text-align: center;
+    text-decoration: none;
     width: 100%;
     padding: 0.3em 0;
     border: none;
@@ -42,6 +45,25 @@
     background-color: #FF5555;
     color: #fff;
     cursor: pointer;
+}
+
+.detail__group {
+    display: flex;
+    margin-bottom: 1em;
+}
+
+.detail__group-inner {
+    margin-right: 2em;
+    text-align: center;
+}
+
+.detail__group-inner img {
+    width: 1.5em;
+    cursor: pointer;
+}
+
+.detail__group-inner p {
+    margin: 0;
 }
 
 .detail__item-description,
@@ -70,6 +92,11 @@
 .detail__group-item-info--category {
     background-color: #D9D9D9;
     border-radius: 25px;
-    padding: 0.1em 1em;
+    padding: 0em 1em;
+    font-size: 0.8rem;
+}
 
+.detail__group-item-info span {
+    padding: 0em 1em;
+    font-size: 0.8rem;
 }
