@@ -9,7 +9,7 @@
         <div class="purchase__content-left">
             <div class="purchase__item">
                 <div class="purchase__img">
-                    <img src="" alt="商品画像">
+                    <img src={{ $item->image }} alt="商品画像">
                 </div>
                 <div class="purchase__item-info">
                     <p class="item__name">商品名</p>

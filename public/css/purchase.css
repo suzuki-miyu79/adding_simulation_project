@@ -1,0 +1,18 @@
+.purchase__content {
+    display: flex;
+    padding: 3em;
+}
+
+.purchase__img {
+    width: 6em;
+    aspect-ratio: 2 / 2.5;
+    background-color: #D9D9D9;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.purchase__img img {
+    width: 100%;
+}
