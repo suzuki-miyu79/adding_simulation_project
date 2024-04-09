@@ -27,9 +27,9 @@ Route::middleware('auth')->group(function () {
     // 購入処理
     Route::post('/purchase/{item_id}', [PurchaseController::class, 'purchase'])->name('purchase');
     // 住所変更ページ
-    Route::get('/purchase/address/{item_id}', [PurchaseController::class, 'showAddress']);
+    Route::get('/purchase/address/{item_id}', [PurchaseController::class, 'showAddress'])->name('address');
     // 住所変更処理
-    Route::post('/purchase/address/{item_id}', [PurchaseController::class, 'updateAddress'])->name('address.update');
+    Route::post('/purchase/address/{item_id}', [PurchaseController::class, 'changeAddress'])->name('address.change');
     // 決済ページ
     Route::get('/payment', [PaymentController::class, 'index']);
     // 決済処理

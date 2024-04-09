@@ -22,8 +22,8 @@ class MypageController extends Controller
 
     public function store(ProfileRequest $request)
     {
-        /** @var \App\Models\User $user **/
         // ログインしているユーザーの情報を取得
+        /** @var \App\Models\User $user **/
         $user = Auth::user();
 
         // ユーザー情報を更新
