@@ -27,6 +27,8 @@ class ItemController extends Controller
         $favoriteCount = Favorite::where('item_id', $item->id)->count(); // お気に入り登録数を取得
         $commentCount = Comment::where('item_id', $item->id)->count(); // コメント数を取得
 
-        return view('detail', compact('item', 'favoriteCount', 'commentCount'));
+        $favoriteModel = new Favorite();
+
+        return view('detail', compact('item', 'favoriteCount', 'commentCount', 'favoriteModel'));
     }
 }

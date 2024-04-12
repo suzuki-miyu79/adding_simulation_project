@@ -20,6 +20,12 @@ class Item extends Model
         'seller_user_id',
     ];
 
+    // ユーザーがこの商品をお気に入りに追加しているかどうかを判定
+    public function isFavoritedBy($user)
+    {
+        return $this->favorites()->where('user_id', $user->id)->exists();
+    }
+
     // ChildCategory モデルとのリレーションシップ
     public function childCategory()
     {

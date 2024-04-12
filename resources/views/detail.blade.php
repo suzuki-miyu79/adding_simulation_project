@@ -17,12 +17,35 @@
             <p class="detail__item-price">¥(値段)</p>
             <div class="detail__group">
                 <div class="detail__group-inner">
-                    <img src="/images/favorite-icon.svg" alt="">
-                    <p for="">{{ $favoriteCount }}</p>
+                    @if (auth()->check())
+                        @php
+                            $isFavorite = auth()
+                                ->user()
+                                ->favorites()
+                                ->where('item_id', $item->id)
+                                ->exists();
+                        @endphp
+
+                        @if ($isFavorite)
+                            {{-- お気に入り登録されている場合 --}}
+                            <img id="favorite-icon" class="favorite-icon" src="/images/favorite-icon-yellow.svg"
+                                alt="" onclick="toggleFavorite({{ $item->id }})">
+                        @else
+                            {{-- お気に入り登録されていない場合 --}}
+                            <img id="favorite-icon" class="favorite-icon" src="/images/favorite-icon.svg" alt=""
+                                onclick="toggleFavorite({{ $item->id }})">
+                        @endif
+                    @else
+                        {{-- 未ログインの場合 --}}
+                        <a href="{{ route('login') }}">
+                            <img id="favorite-icon" class="favorite-icon" src="/images/favorite-icon.svg" alt="">
+                        </a>
+                    @endif
+                    <p id="favorite-count">{{ $favoriteCount }}</p>
                 </div>
                 <div class="detail__group-inner">
-                    <img id="comment-icon" src="/images/comment-icon.svg" alt="">
-                    <p for="">{{ $commentCount }}</p>
+                    <img class="comment-icon" id="comment-icon" src="/images/comment-icon.svg" alt="">
+                    <p>{{ $commentCount }}</p>
                 </div>
             </div>
 
@@ -35,12 +58,12 @@
                 <p class="detail__item-description--text">{{ $item->description }}</p>
                 <p class="detail__item-info">商品の情報</p>
                 <div class="detail__group-item-info">
-                    <label for="">カテゴリー</label>
+                    <p for="">カテゴリー</p>
                     <span class="detail__group-item-info--category">{{ $item->childCategory->parentCategory->name }}</span>
                     <span class="detail__group-item-info--category">{{ $item->childCategory->name }}</span>
                 </div>
                 <div class="detail__group-item-info">
-                    <label for="">商品の状態</label>
+                    <p>商品の状態</p>
                     <span>{{ $item->condition->name }}</span>
                 </div>
             </div>
@@ -55,14 +78,43 @@
                     <p>コメント</p>
                 </div>
                 <form action="" class="comment__form">
-                    <label for="">商品へのコメント</label>
+                    <p>商品へのコメント</p>
                     <textarea name="" id="" cols="30" rows="10"></textarea>
                     <button>コメントを送信する</button>
                 </form>
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        function toggleFavorite(itemId) {
+            axios.post(`/favorite/${itemId}`, {
+                    _token: '{{ csrf_token() }}',
+                    item_id: itemId,
+                })
+                .then(response => {
+                    console.log(response.data); // レスポンスをログに出力
+                    // アイコンの表示を更新する処理（isFavoriteフラグを受け取ってアイコンの状態を更新）
+                    const favoriteIcon = document.getElementById('favorite-icon');
+                    if (favoriteIcon) {
+                        if (response.data.isFavorite) {
+                            favoriteIcon.src = "/images/favorite-icon-yellow.svg";
+                        } else {
+                            favoriteIcon.src = "/images/favorite-icon.svg";
+                        }
+                    }
 
+                    // お気に入りの件数を更新する処理
+                    const favoriteCountElement = document.getElementById('favorite-count');
+                    if (favoriteCountElement) {
+                        favoriteCountElement.textContent = response.data.favoriteCount;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error Message:', error);
+                });
+        }
+    </script>
     <script>
         document.getElementById('comment-icon').addEventListener('click', function() {
             // コメント表示エリアを表示

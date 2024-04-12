@@ -8,6 +8,7 @@ use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\MypageController;
 use App\Http\Controllers\SellController;
+use App\Http\Controllers\FavoriteController;
 
 // 商品一覧ページ（おすすめ）
 Route::get('/', [ItemController::class, 'showTop'])->name('top');
@@ -46,6 +47,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/sell', [SellController::class, 'store'])->name('sell');
     // カテゴリー1に関連するカテゴリー2の一覧取得
     Route::get('/sell/parent_categories/{parentCategoryId}/children', [SellController::class, 'getChildCategories']);
+    // お気に入り登録
+    Route::post('/favorite/{item_id}', [FavoriteController::class, 'toggleFavorite'])->name('favorite.toggle');
 });
 
 require __DIR__ . '/auth.php';
