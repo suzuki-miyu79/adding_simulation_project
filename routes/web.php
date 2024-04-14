@@ -49,6 +49,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/sell/parent_categories/{parentCategoryId}/children', [SellController::class, 'getChildCategories']);
     // お気に入り登録
     Route::post('/favorite/{item_id}', [FavoriteController::class, 'toggleFavorite'])->name('favorite.toggle');
+    // 検索
+    Route::get('/search', [ItemController::class, 'search'])->name('search');
 });
 
 require __DIR__ . '/auth.php';

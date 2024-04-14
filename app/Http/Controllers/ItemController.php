@@ -31,4 +31,14 @@ class ItemController extends Controller
 
         return view('detail', compact('item', 'favoriteCount', 'commentCount', 'favoriteModel'));
     }
+
+    public function search(Request $request)
+    {
+        $keyword = $request->input('keyword');
+
+        // キーワードに部分一致するアイテムを検索
+        $items = Item::where('name', 'like', '%' . $keyword . '%')->get();
+
+        return view('search-results', compact('items', 'keyword'));
+    }
 }
