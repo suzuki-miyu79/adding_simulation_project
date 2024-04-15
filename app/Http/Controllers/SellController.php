@@ -14,7 +14,7 @@ class SellController extends Controller
     public function index()
     {
         // カテゴリーを取得
-        $parentCategories = ParentCategory::with('child_categories')->get();
+        $parentCategories = ParentCategory::with('childCategories')->get();
         // 商品の状態を取得
         $conditions = Condition::all();
 
