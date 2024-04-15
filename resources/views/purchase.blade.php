@@ -19,15 +19,15 @@
             <div class="payment">
                 <div class="payment-top">
                     <p>支払い方法</p>
-                    <a href="">変更する</a>
+                    <a href="#" id="change-payment">変更する</a>
                 </div>
                 <div class="payment-bottom">
-                    <p>選択された支払方法: <span id="selected-payment"></span></p>
                     <select id="payment-method" style="display: none;">
                         <option value="credit_card">クレジットカード</option>
                         <option value="bank_transfer">銀行振り込み</option>
                         <option value="convenience_store">コンビニ支払い</option>
                     </select>
+                    <p>選択された支払方法: <span id="selected-payment"></span></p>
                 </div>
             </div>
             <div class="delivery">
@@ -62,7 +62,7 @@
                 </div>
                 <div class="purchase__content-right-inner payment-methods">
                     <p>支払い方法</p>
-                    <span></span>
+                    <span id="selected-payment-2"></span>
                 </div>
             </div>
             <div class="purchase__button">
@@ -87,9 +87,35 @@
 
             // 選択された支払い方法を表示
             document.getElementById('selected-payment').textContent = selectedText;
+            document.getElementById('selected-payment-2').textContent = selectedText;
 
             // 選択肢を非表示にする
             this.style.display = 'none';
+        });
+
+        // 購入ボタンがクリックされたときの処理
+        document.querySelector('.purchase__button-submit').addEventListener('click', function() {
+            var selectedPaymentMethod = document.getElementById('payment-method').value;
+
+            // 選択された支払い方法に応じてルートを変更する
+            switch (selectedPaymentMethod) {
+                case 'credit_card':
+                    // クレジットカードの支払い処理を行うルートにリダイレクト
+                    window.location.href = '/stripe/credit-card-payment';
+                    break;
+                case 'bank_transfer':
+                    // 銀行振り込みの支払い処理を行うルートにリダイレクト
+                    window.location.href = '/bank-transfer-payment';
+                    break;
+                case 'convenience_store':
+                    // コンビニ支払いの支払い処理を行うルートにリダイレクト
+                    window.location.href = '/convenience-store-payment';
+                    break;
+                default:
+                    // デフォルトの処理を行うか、エラーメッセージを表示
+                    console.error('Unsupported payment method selected');
+                    break;
+            }
         });
     </script>
 @endsection

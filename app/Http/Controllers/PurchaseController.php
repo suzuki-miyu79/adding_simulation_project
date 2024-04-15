@@ -27,8 +27,10 @@ class PurchaseController extends Controller
         return view('address-change', compact('item'));
     }
 
-    public function changeAddress(Request $request)
+    public function changeAddress(Request $request, $id)
     {
+        $item = Item::findOrFail($id); // IDに対応する商品情報を取得
+
         // 送信された住所情報をセッションに保存
         Session::put('delivery_address', [
             'postcode' => $request->input('postcode'),
@@ -47,7 +49,7 @@ class PurchaseController extends Controller
         }
 
         // ページにリダイレクト
-        return redirect()->route('purchase.show')->with('success', '配送先住所を更新しました');
+        return redirect()->route('purchase.index', ['item_id' => $item->id])->with('success', '配送先住所を更新しました');
     }
 
     public function purchase(Request $request, $itemId)
