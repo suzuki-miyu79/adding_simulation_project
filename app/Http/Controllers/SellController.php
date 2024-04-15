@@ -29,7 +29,7 @@ class SellController extends Controller
             return response()->json(['error' => 'Parent category not found'], 404);
         }
 
-        $childCategories = $parentCategory->child_categories;
+        $childCategories = $parentCategory->childCategories;
 
         return response()->json($childCategories);
     }
