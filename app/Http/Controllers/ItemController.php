@@ -18,7 +18,9 @@ class ItemController extends Controller
 
     public function showMylist()
     {
-        return view('mylist');
+        $favorites = Favorite::where('user_id', auth()->id())->get();
+
+        return view('mylist', compact('favorites'));
     }
 
     public function index($id)
