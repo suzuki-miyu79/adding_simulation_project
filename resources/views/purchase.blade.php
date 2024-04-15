@@ -22,7 +22,12 @@
                     <a href="">変更する</a>
                 </div>
                 <div class="payment-bottom">
-                    <p></p>
+                    <p>選択された支払方法: <span id="selected-payment"></span></p>
+                    <select id="payment-method" style="display: none;">
+                        <option value="credit_card">クレジットカード</option>
+                        <option value="bank_transfer">銀行振り込み</option>
+                        <option value="convenience_store">コンビニ支払い</option>
+                    </select>
                 </div>
             </div>
             <div class="delivery">
@@ -65,4 +70,26 @@
             </div>
         </div>
     </div>
+
+    <script>
+        // 変更するリンクがクリックされたときの処理
+        document.getElementById('change-payment').addEventListener('click', function(e) {
+            e.preventDefault(); // リンクのデフォルト動作をキャンセル
+
+            // 選択肢を表示する
+            document.getElementById('payment-method').style.display = 'block';
+        });
+
+        // 支払い方法が選択されたときの処理
+        document.getElementById('payment-method').addEventListener('change', function() {
+            var selectedOption = this.value; // 選択された支払い方法を取得
+            var selectedText = this.options[this.selectedIndex].text; // 選択された支払い方法を取得
+
+            // 選択された支払い方法を表示
+            document.getElementById('selected-payment').textContent = selectedText;
+
+            // 選択肢を非表示にする
+            this.style.display = 'none';
+        });
+    </script>
 @endsection
