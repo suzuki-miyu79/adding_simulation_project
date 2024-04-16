@@ -24,7 +24,9 @@
         @endif
 
         <div class="header__content">
-            <img src="/images/logo.svg" alt="logo">
+            <a href="/">
+                <img src="/images/logo.svg" alt="logo">
+            </a>
             <form action="{{ route('search') }}" class="search__form" method="GET">
                 <input type="text" name="keyword" placeholder="なにをお探しですか？" class="search__form-input">
             </form>
