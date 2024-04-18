@@ -27,7 +27,7 @@ class PaymentController extends Controller
             $charge = Charge::create([
                 'amount' => $item->price, // 商品の価格で指定
                 'currency' => 'jpy',
-                'source' => $request->stripeToken, // Stripe.jsから送信されるトークン
+                'source' => $request->stripeToken, // トークン
             ]);
 
             // Purchasesテーブルに購入情報を登録
