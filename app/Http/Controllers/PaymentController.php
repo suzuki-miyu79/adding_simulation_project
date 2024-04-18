@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Stripe\Stripe;
 use Stripe\Charge;
 use App\Models\Purchase;
+use App\Models\Item;
 use Illuminate\Support\Facades\Log;
 
 class PaymentController extends Controller
@@ -16,12 +17,15 @@ class PaymentController extends Controller
         // ユーザーIDを取得
         $userId = auth()->id();
 
+        // 商品の価格を取得
+        $item = Item::findOrFail($item_id);
+
         Stripe::setApiKey(env('STRIPE_SECRET')); //シークレットキー
 
         try {
             // クレジットカード情報を使用して支払いを処理
             $charge = Charge::create([
-                'amount' => 1000,  // 金額（JPYで指定）
+                'amount' => $item->price, // 商品の価格で指定
                 'currency' => 'jpy',
                 'source' => $request->stripeToken, // Stripe.jsから送信されるトークン
             ]);
