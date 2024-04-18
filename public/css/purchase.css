@@ -82,3 +82,18 @@
     color: #fff;
     cursor: pointer;
 }
+
+.purchase__button-submit__a {
+    display: block;
+    text-align: center;
+    width: 100%;
+    padding: 0.2em 0;
+    text-decoration: none;
+    border: none;
+    border-radius: 3px;
+    background-color: #FF5555;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+}

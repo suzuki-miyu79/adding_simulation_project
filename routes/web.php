@@ -27,14 +27,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/purchase/{item_id}', [PurchaseController::class, 'index'])->name('purchase.index');
     // 購入処理
     Route::post('/purchase/{item_id}', [PurchaseController::class, 'purchase'])->name('purchase');
+    // 購入完了ページ
+    Route::get('/purchase/{item_id}/thanks', [PurchaseController::class, 'thanks'])->name('purchase.thanks');
     // 住所変更ページ
     Route::get('/purchase/address/{item_id}', [PurchaseController::class, 'showAddress'])->name('address');
     // 住所変更処理
     Route::post('/purchase/address/{item_id}', [PurchaseController::class, 'changeAddress'])->name('address.change');
-    // 決済ページ
-    Route::get('/payment', [PaymentController::class, 'index']);
     // 決済処理
-    Route::post('/payment', [PaymentController::class, 'payment'])->name('payment');
+    Route::post('/charge/{item_id}', [PaymentController::class, 'charge'])->name('charge');
+    // サンクスページ
+    Route::get('/thanks', [PurchaseController::class, 'thanks']);
     // マイページ
     Route::get('/mypage', [MypageController::class, 'index'])->name('mypage');
     // プロフィール設定ページ
