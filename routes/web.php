@@ -9,6 +9,8 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\MypageController;
 use App\Http\Controllers\SellController;
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\AdminController;
+use App\Http\Middleware\AdminMiddleware;
 
 // 商品一覧ページ（おすすめ）
 Route::get('/', [ItemController::class, 'showTop'])->name('top');
@@ -53,6 +55,12 @@ Route::middleware('auth')->group(function () {
     Route::post('/favorite/{item_id}', [FavoriteController::class, 'toggleFavorite'])->name('favorite.toggle');
     // 検索
     Route::get('/search', [ItemController::class, 'search'])->name('search');
+    // 管理ページの表示
+    Route::get('/admin', [AdminController::class, 'showAdminPage'])->name('admin.show')->middleware(AdminMiddleware::class)->middleware('auth');
+    // メール送信フォームの表示
+    Route::get('/mailform', [AdminController::class, 'showMailForm'])->name('mailform.show');
+    // メール送信
+    Route::post('/send-mail', [AdminController::class, 'sendMail'])->name('send.mail');
 });
 
 require __DIR__ . '/auth.php';
