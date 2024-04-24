@@ -5,37 +5,58 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\Item;
+use App\Models\Purchase;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\PaymentController;
 
 class PaymentTest extends TestCase
 {
-    public function testPaymentProcess()
-    {
-        // テストデータの準備
-        $itemId = 1; // 商品ID
-        $token = 'tok_visa'; // ダミーの支払いトークン
+    use RefreshDatabase, WithFaker;
 
-        // テスト用のRequestオブジェクトを作成
-        $request = new Request([
-            'itemId' => $itemId,
+    public function testPaymentTest()
+    {
+        // テスト用の商品を作成
+        $item = Item::factory()->create();
+
+        // テスト用のユーザーIDを作成
+        $userId = $this->faker->randomNumber();
+
+        // Stripeの処理をモック
+        $mockStripe = $this->mock(\Stripe\Charge::class);
+        $mockStripe->shouldReceive('create')->once()->andReturn((object) ['id' => 'fake_charge_id']);
+
+        // コントローラのアクションを実行
+        $response = $this->post(route('charge', ['item_id' => $item->id]), [
+            'stripeToken' => 'fake_token', // テスト用のStripeトークン
         ]);
 
-        // StripeのMockを作成（テスト用のダミーデータを返す）
-        $stripeMock = $this->createMock(\Stripe\Stripe::class);
-        $stripeMock->method('setApiKey')->willReturn(true);
-        $stripeMock->method('createToken')->willReturn((object) ['token' => ['id' => $token]]);
-        \Stripe\Stripe::setApiKey('dummy_secret_key'); // 仮のシークレットキーを設定
+        // データベースに購入情報が保存されていることを確認
+        $this->assertDatabaseHas('purchases', [
+            'item_id' => $item->id,
+            'buyer_user_id' => $userId,
+        ]);
 
-        // コントローラーのインスタンスを作成
-        $controller = new PaymentController();
+        // 正しいビューが返されることを確認
+        $response->assertViewIs('thanks');
 
-        // テスト対象のメソッドを呼び出し
-        $response = $controller->charge($request, $itemId);
+        // エラーメッセージがないことを確認
+        $response->assertSessionHasNoErrors();
+    }
 
-        // アサーション：期待される結果を確認
-        $this->assertInstanceOf(RedirectResponse::class, $response); // リダイレクトレスポンスが返されることを確認
-        $this->assertEquals('thanks', $response->getTargetUrl()); // 正しいリダイレクト先URLが返されることを確認
+    public function test_charge_action_failure()
+    {
+        // Stripeの処理をモックして例外をスローさせる
+        $mockStripe = $this->mock(\Stripe\Charge::class);
+        $mockStripe->shouldReceive('create')->once()->andThrow(new \Exception('Test Stripe Error'));
+
+        // コントローラのアクションを実行
+        $response = $this->post(route('charge', ['item_id' => 1]), [
+            'stripeToken' => 'fake_token', // テスト用のStripeトークン
+        ]);
+
+        // エラーメッセージがセッションに設定されていることを確認
+        $response->assertSessionHas('error', '支払い処理中にエラーが発生しました。もう一度お試しください。');
     }
 }

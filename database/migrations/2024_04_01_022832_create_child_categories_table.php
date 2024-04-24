@@ -14,6 +14,8 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('parent_category_id')->constrained();
             $table->string('name', 191);
+            $table->timestamp('created_at')->useCurrent()->nullable();
+            $table->timestamp('updated_at')->useCurrent()->nullable();
         });
     }
 

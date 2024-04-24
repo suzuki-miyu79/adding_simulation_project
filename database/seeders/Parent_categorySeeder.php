@@ -25,5 +25,12 @@ class Parent_categorySeeder extends Seeder
                 'name' => $parent_category,
             ]);
         }
+
+        // データをテスト用テーブルに挿入
+        // foreach ($parent_categories as $parent_category) {
+        //     DB::connection('mysql_test')->table('parent_categories')->insert([
+        //         'name' => $parent_category,
+        //     ]);
+        // }
     }
 }

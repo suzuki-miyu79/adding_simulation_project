@@ -13,6 +13,8 @@ return new class extends Migration {
         Schema::create('parent_categories', function (Blueprint $table) {
             $table->id();
             $table->string('name', 191);
+            $table->timestamp('created_at')->useCurrent()->nullable();
+            $table->timestamp('updated_at')->useCurrent()->nullable();
         });
     }
 

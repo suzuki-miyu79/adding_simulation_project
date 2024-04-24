@@ -15,10 +15,11 @@ return new class extends Migration {
             $table->foreignId('child_category_id')->constrained();
             $table->foreignId('condition_id')->constrained();
             $table->string('name', 191);
+            $table->string('brand', 191)->nullable();
             $table->text('description');
             $table->decimal('price', 10, 0);
             $table->string('image', 255);
-            $table->foreignId('seller_user_id')->constrained('users');
+            $table->foreignId('seller_user_id')->nullable()->constrained('users');
             $table->timestamp('created_at')->useCurrent()->nullable();
             $table->timestamp('updated_at')->useCurrent()->nullable();
         });

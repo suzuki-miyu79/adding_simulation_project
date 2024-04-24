@@ -44,5 +44,10 @@ class Child_categorySeeder extends Seeder
         foreach ($child_categories as $child_category) {
             DB::table('child_categories')->insert($child_category);
         }
+
+        // データをテスト用テーブルに挿入
+        // foreach ($child_categories as $child_category) {
+        //     DB::connection('mysql_test')->table('child_categories')->insert($child_category);
+        // }
     }
 }
