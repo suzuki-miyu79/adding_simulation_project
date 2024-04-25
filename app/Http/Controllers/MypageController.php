@@ -54,4 +54,9 @@ class MypageController extends Controller
         // リダイレクト
         return redirect()->route('mypage')->with('success', 'プロフィールを更新しました');
     }
+
+    public function showPurchaseProduct()
+    {
+        return view('purchase-product');
+    }
 }

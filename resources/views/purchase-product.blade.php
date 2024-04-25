@@ -21,8 +21,8 @@
         </div>
         <nav class="mypage__nav">
             <ul class="mypage__nav-menu">
-                <li class="active"><a href="/mypage">出品した商品</a></li>
-                <li><a href="/mypage/purchase-product">購入した商品</a></li>
+                <li><a href="/mypage">出品した商品</a></li>
+                <li class="active"><a href="/mypage/purchase-product">購入した商品</a></li>
             </ul>
         </nav>
         <div class="mypage__nav-line"></div>

@@ -52,9 +52,9 @@ class PurchaseController extends Controller
         return redirect()->route('purchase.index', ['item_id' => $item->id])->with('success', '配送先住所を更新しました');
     }
 
-    public function thanks()
+    public function complete()
     {
-        return view('thanks');
+        return view('complete');
     }
 
 }

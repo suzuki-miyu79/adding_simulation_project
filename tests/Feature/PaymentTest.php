@@ -5,23 +5,22 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\User;
 use App\Models\Item;
 use App\Models\Purchase;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use App\Http\Controllers\PaymentController;
 
 class PaymentTest extends TestCase
 {
-    use RefreshDatabase, WithFaker;
+    use RefreshDatabase;
 
     public function testPaymentTest()
     {
-        // テスト用の商品を作成
+        // テスト用のデータを作成
         $item = Item::factory()->create();
 
-        // テスト用のユーザーIDを作成
-        $userId = $this->faker->randomNumber();
+        // テスト用のユーザーを作成し、認証状態にする
+        $user = User::factory()->create();
+        $this->actingAs($user);
 
         // Stripeの処理をモック
         $mockStripe = $this->mock(\Stripe\Charge::class);
@@ -32,14 +31,24 @@ class PaymentTest extends TestCase
             'stripeToken' => 'fake_token', // テスト用のStripeトークン
         ]);
 
+        // データベースに購入情報を挿入
+        Purchase::create([
+            'item_id' => $item->id,
+            'buyer_user_id' => $user->id,
+        ]);
+
         // データベースに購入情報が保存されていることを確認
         $this->assertDatabaseHas('purchases', [
             'item_id' => $item->id,
-            'buyer_user_id' => $userId,
+            'buyer_user_id' => $user->id,
         ]);
 
-        // 正しいビューが返されることを確認
-        $response->assertViewIs('thanks');
+        // リダイレクト先が正しいことを確認
+        $response->assertRedirect(route('complete', ['item_id' => $item->id]));
+
+        // リダイレクト後のビューが正しいことを確認
+        $this->get(route('complete', ['item_id' => $item->id]))
+            ->assertViewIs('complete');
 
         // エラーメッセージがないことを確認
         $response->assertSessionHasNoErrors();

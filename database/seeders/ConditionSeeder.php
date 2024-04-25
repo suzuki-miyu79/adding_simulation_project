@@ -25,12 +25,5 @@ class ConditionSeeder extends Seeder
                 'name' => $condition,
             ]);
         }
-
-        // データをテスト用テーブルに挿入
-        // foreach ($conditions as $condition) {
-        //     DB::connection('mysql_test')->table('conditions')->insert([
-        //         'name' => $condition,
-        //     ]);
-        // }
     }
 }

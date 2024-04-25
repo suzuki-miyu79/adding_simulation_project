@@ -37,10 +37,12 @@ Route::middleware('auth')->group(function () {
     Route::post('/purchase/address/{item_id}', [PurchaseController::class, 'changeAddress'])->name('address.change');
     // 決済処理
     Route::post('/charge/{item_id}', [PaymentController::class, 'charge'])->name('charge');
-    // サンクスページ
-    Route::get('/thanks', [PurchaseController::class, 'thanks']);
-    // マイページ
+    // 購入完了ページ
+    Route::get('/complete/{item_id}', [PurchaseController::class, 'complete'])->name('complete');
+    // マイページ(出品した商品)
     Route::get('/mypage', [MypageController::class, 'index'])->name('mypage');
+    // マイページ(購入した商品)
+    Route::get('/mypage/purchase-product', [MypageController::class, 'showPurchaseProduct']);
     // プロフィール設定ページ
     Route::get('/mypage/profile', [MypageController::class, 'create'])->name('profile');
     // プロフィール登録処理

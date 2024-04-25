@@ -24,16 +24,5 @@ class UserSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now(),
         ]);
-
-        // テスト用テーブルに管理者の作成
-        // DB::connection('mysql_test')->table('users')->insert([
-        //     'name' => '管理者',
-        //     'email' => 'admin@abc.com',
-        //     'email_verified_at' => now(),
-        //     'password' => Hash::make('12345678'),
-        //     'role' => 'admin',
-        //     'created_at' => now(),
-        //     'updated_at' => now(),
-        // ]);
     }
 }

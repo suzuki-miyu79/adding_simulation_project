@@ -36,7 +36,7 @@ class PaymentController extends Controller
                 'buyer_user_id' => $userId,
             ]);
 
-            return view('thanks');
+            return redirect()->route('complete', ['item_id' => $item->id]);
 
         } catch (\Exception $e) {
             // エラーメッセージとスタックトレースをログに記録する
