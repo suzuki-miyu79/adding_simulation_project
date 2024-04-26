@@ -55,5 +55,13 @@ class SellController extends Controller
         }
 
         $item->save();
+
+        // 出品処理完了後に出品完了ページへリダイレクト
+        return redirect()->route('sell.complete');
+    }
+
+    public function showSellComplete()
+    {
+        return view('sell-complete');
     }
 }

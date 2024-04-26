@@ -51,6 +51,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/sell', [SellController::class, 'index']);
     // 出品処理
     Route::post('/sell', [SellController::class, 'store'])->name('sell');
+    // 出品完了ページ
+    Route::get('/sell/complete', [SellController::class, 'showSellComplete'])->name('sell.complete');
     // カテゴリー1に関連するカテゴリー2の一覧取得
     Route::get('/sell/parent_categories/{parentCategoryId}/children', [SellController::class, 'getChildCategories']);
     // お気に入り登録

@@ -19,6 +19,6 @@ class AdminMiddleware
             return $next($request);
         }
 
-        return redirect()->route('restaurant.index')->with('error', '管理者権限が必要です。');
+        return redirect()->route('toppage')->with('error', '管理者権限が必要です。');
     }
 }
