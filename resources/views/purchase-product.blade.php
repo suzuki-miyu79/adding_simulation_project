@@ -27,14 +27,11 @@
         </nav>
         <div class="mypage__nav-line"></div>
         <div class="item__list">
-            <div class="item-card"></div>
-            <div class="item-card"></div>
-            <div class="item-card"></div>
-            <div class="item-card"></div>
-            <div class="item-card"></div>
-            <div class="item-card"></div>
-            <div class="item-card"></div>
-            <div class="item-card"></div>
+            @foreach ($itemsData as $itemData)
+                <div class="item-card">
+                    <img src="{{ $itemData['image'] }}" alt="{{ $itemData['name'] }}">
+                </div>
+            @endforeach
         </div>
 
         <script>

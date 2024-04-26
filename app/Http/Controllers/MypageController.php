@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Item;
+use App\Models\Purchase;
 use App\Http\Requests\ProfileRequest;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,7 +13,9 @@ class MypageController extends Controller
     {
         // ログインしているユーザーの情報を取得
         $user = Auth::user();
-        return view('mypage', compact('user'));
+        $userId = $user->id;
+        $items = Item::where('seller_user_id', $userId)->get();
+        return view('mypage', compact('user', 'items'));
     }
 
     public function create()
@@ -55,8 +58,28 @@ class MypageController extends Controller
         return redirect()->route('mypage')->with('success', 'プロフィールを更新しました');
     }
 
+    // 購入した商品ページ
     public function showPurchaseProduct()
     {
-        return view('purchase-product');
+        // ログインしているユーザーの情報を取得
+        $user = Auth::user();
+        $userId = $user->id;
+        $purchases = Purchase::where('buyer_user_id', $userId)->get();
+
+        // 商品情報を格納する配列を初期化
+        $itemsData = [];
+
+        // 購入した商品ごとに商品情報を取得し、配列に追加
+        foreach ($purchases as $purchase) {
+            $item = Item::find($purchase->item_id);
+            if ($item) {
+                $itemsData[] = [
+                    'image' => $item->image,
+                    'name' => $item->name,
+                ];
+            }
+        }
+
+        return view('purchase-product', compact('user', 'itemsData'));
     }
 }
