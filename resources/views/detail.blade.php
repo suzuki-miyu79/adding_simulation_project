@@ -13,7 +13,7 @@
         </div>
         <div class="detail__content-right">
             <h2 class="detail__item-name">{{ $item->name }}</h2>
-            <p class="detail__item-brand">ブランド名</p>
+            <p class="detail__item-brand">{{ $item->brand }}</p>
             <p class="detail__item-price">¥{{ $item->price }}(値段)</p>
             <div class="detail__group">
                 <div class="detail__group-inner">
@@ -41,11 +41,11 @@
                             <img id="favorite-icon" class="favorite-icon" src="/images/favorite-icon.svg" alt="">
                         </a>
                     @endif
-                    <p id="favorite-count">{{ $favoriteCount }}</p>
+                    <p id="favorite-count" class="count">{{ $favoriteCount }}</p>
                 </div>
                 <div class="detail__group-inner">
                     <img class="comment-icon" id="comment-icon" src="/images/comment-icon.svg" alt="">
-                    <p>{{ $commentCount }}</p>
+                    <p class="count">{{ $commentCount }}</p>
                 </div>
             </div>
 
@@ -70,17 +70,37 @@
 
             {{-- コメント --}}
             <div class="comment" id="comment-section" style="display: none;">
-                <div class="comment__inner">
-                    <div class="comment__user">
-                        <img src="" alt="">
-                        <span>名前</span>
+                @foreach ($comments as $comment)
+                    <div class="comment__inner {{ $comment->user_id === auth()->id() ? 'my-post' : 'other-post' }}">
+                        {{-- ログインユーザーとその他ユーザーの表示切替 --}}
+                        @if ($comment->user_id === auth()->id())
+                            <div class="comment-user">
+                                <span>{{ $comment->user->name }}</span>
+                                <div class="comment-img">
+                                    <img src="{{ $comment->user->image }}" alt="{{ $comment->user->name }}のアイコン"
+                                        class="icon-right">
+                                </div>
+                            </div>
+                        @else
+                            <div class="comment-user">
+                                <div class="comment-img">
+                                    <img src="{{ $comment->user->image }}" alt="{{ $comment->user->name }}のアイコン"
+                                        class="icon-left">
+                                </div>
+                                <span>{{ $comment->user->name }}</span>
+                            </div>
+                        @endif
+                        <p>{{ $comment->comment }}</p>
                     </div>
-                    <p>コメント</p>
-                </div>
-                <form action="" class="comment__form">
-                    <p>商品へのコメント</p>
-                    <textarea name="" id="" cols="30" rows="10"></textarea>
-                    <button>コメントを送信する</button>
+                @endforeach
+                <form action="{{ route('item.comment', ['item_id' => $item->id]) }}" class="comment__form" method="post">
+                    @csrf
+                    <div class="comment__form">
+                        <input type="hidden" name="item_id" value="{{ $item->id }}"> {{-- 商品IDを送信 --}}
+                        <p>商品へのコメント</p>
+                        <textarea name="comment"></textarea>
+                        <button type="submit">コメントを送信する</button>
+                    </div>
                 </form>
             </div>
         </div>

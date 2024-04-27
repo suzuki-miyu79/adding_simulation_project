@@ -5,7 +5,7 @@
 
 .detail__content-left,
 .detail__content-right {
-    width: 35%;
+    width: 30%;
     overflow: hidden;
     margin: 5em;
 }
@@ -30,21 +30,12 @@
     margin: 0;
 }
 
-.detail__item-brand {
-    font-size: 0.8rem;
+.detail__item-name {
+    font-size: 2.2rem;
 }
 
-.detail__button a {
-    display: block;
-    text-align: center;
-    text-decoration: none;
-    width: 100%;
-    padding: 0.3em 0;
-    border: none;
-    border-radius: 3px;
-    background-color: #FF5555;
-    color: #fff;
-    cursor: pointer;
+.detail__item-price {
+    font-size: 1.8rem;
 }
 
 .detail__group {
@@ -67,17 +58,34 @@
 }
 
 .detail__group-inner img {
-    width: 1.5em;
+    width: 2em;
     cursor: pointer;
 }
 
-.detail__group-inner p {
+.count {
     margin: 0;
+    font-weight: bold;
+}
+
+.detail__button a {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    width: 100%;
+    padding: 0.2em 0;
+    border: none;
+    border-radius: 3px;
+    background-color: #FF5555;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 1em 0;
 }
 
 .detail__item-description,
 .detail__item-info {
-    font-size: 1.3rem;
+    font-size: 1.7rem;
     font-weight: bold;
 }
 
@@ -90,10 +98,12 @@
 }
 
 .detail__group-item-info {
+    display: flex;
+    align-items: center;
     margin-bottom: 1.8em;
 }
 
-.detail__group-item-info label {
+.detail__group-item-info p {
     font-weight: bold;
     margin-right: 1.5em;
 }
@@ -108,4 +118,61 @@
 .detail__group-item-info span {
     padding: 0em 1em;
     font-size: 0.8rem;
+}
+
+/* 以下、コメント欄スタイル */
+
+.comment-user {
+    display: flex;
+    align-items: center;
+}
+
+.my-post .comment-user {
+    display: flex;
+    justify-content: flex-end;
+    /* my-post クラスが適用された場合、コメントユーザー名を右寄せにする */
+}
+
+.comment-img {
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    width: 2.5em;
+    aspect-ratio: 1 / 1;
+    background-color: #D9D9D9;
+    margin: 0;
+}
+
+.comment-img img {
+    width: 100%;
+}
+
+.comment p {
+    margin: 0;
+}
+
+.comment__form {
+    margin-top: 3em;
+}
+
+.comment__form textarea {
+    width: 100%;
+    height: 5em;
+}
+
+.comment__form button {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    width: 100%;
+    padding: 0.2em 0;
+    border: none;
+    border-radius: 3px;
+    background-color: #FF5555;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.5rem;
+    font-weight: bold;
 }
