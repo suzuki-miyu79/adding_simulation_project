@@ -90,7 +90,7 @@
                                 <span>{{ $comment->user->name }}</span>
                             </div>
                         @endif
-                        <p>{{ $comment->comment }}</p>
+                        <p class="comment-text">{{ $comment->comment }}</p>
                     </div>
                 @endforeach
                 <form action="{{ route('item.comment', ['item_id' => $item->id]) }}" class="comment__form" method="post">
