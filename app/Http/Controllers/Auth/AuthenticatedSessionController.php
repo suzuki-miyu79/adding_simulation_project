@@ -8,6 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Session;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -16,6 +17,9 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): View
     {
+        // ログイン前にアクセスしたURLをセッションに保存
+        Session::put('previous_url', url()->previous());
+
         return view('auth.login');
     }
 
@@ -28,7 +32,9 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('top', absolute: false));
+        // ログイン後に元のページにリダイレクト
+        $previous_url = Session::pull('previous_url', '/');
+        return redirect()->intended($previous_url);
     }
 
     /**
@@ -42,6 +48,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/')->with('success', 'ログアウトしました。');
+        ;
     }
 }
