@@ -14,6 +14,7 @@ class Item extends Model
         'child_category_id',
         'condition_id',
         'name',
+        'brand',
         'description',
         'price',
         'image',
