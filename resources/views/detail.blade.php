@@ -96,10 +96,15 @@
                 <form action="{{ route('item.comment', ['item_id' => $item->id]) }}" class="comment__form" method="post">
                     @csrf
                     <div class="comment__form">
-                        <input type="hidden" name="item_id" value="{{ $item->id }}"> {{-- 商品IDを送信 --}}
-                        <p>商品へのコメント</p>
-                        <textarea name="comment"></textarea>
-                        <button type="submit">コメントを送信する</button>
+                        @if (auth()->check())
+                            <input type="hidden" name="item_id" value="{{ $item->id }}"> {{-- 商品IDを送信 --}}
+                            <p>商品へのコメント</p>
+                            <textarea name="comment"></textarea>
+                            <button type="submit">コメントを送信する</button>
+                        @else
+                            <p>コメントを送信するにはログインが必要です。</p>
+                            <a href="{{ route('login') }}">ログインしてコメントする</a>
+                        @endif
                     </div>
                 </form>
             </div>

@@ -180,7 +180,8 @@
     height: 5em;
 }
 
-.comment__form button {
+.comment__form button,
+.comment__form a {
     display: block;
     text-align: center;
     text-decoration: none;
