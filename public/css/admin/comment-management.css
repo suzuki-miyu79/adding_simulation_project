@@ -1,0 +1,24 @@
+.comment-management {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.comment-management__header {
+    margin: 1em 0;
+}
+
+.comment-management table,
+.comment-management th,
+.comment-management td {
+    border: 1px solid black;
+}
+
+.comment-management th {
+    padding: 0.5em 1em;
+    background-color: #D9D9D9;
+}
+
+.comment-management td {
+    padding: 0.2em 1em;
+}

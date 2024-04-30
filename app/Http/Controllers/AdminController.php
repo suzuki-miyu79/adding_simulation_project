@@ -7,6 +7,7 @@ use App\Mail\AdminMail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
 use App\Models\User;
+use App\Models\Comment;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Hash;
@@ -20,31 +21,29 @@ class AdminController extends Controller
         return view('admin-page');
     }
 
-    // 店舗代表者登録ページ表示
-    public function showRepresentativeRegister()
+    // コメント管理ページ表示
+    public function showCommentManagement()
     {
-        return view('representative-register');
+        $comments = Comment::paginate(10); // 1ページに10件ずつコメントを取得
+
+        return view('admin.comment-management', compact('comments'));
     }
 
-    // 店舗代表者登録機能
-    public function register(Request $request): RedirectResponse
+    // コメント検索機能
+    public function searchComment(Request $request)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:191'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:191', 'unique:' . User::class],
-            'password' => ['required', 'min:8', 'max:191', Rules\Password::defaults()],
-        ]);
+        $searchTerm = $request->input('query');
 
-        $user = User::create([
-            'name' => $request->name,
-            'role' => 'representative',
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+        // コメント内容・投稿者名・日付で部分一致検索を行うクエリを作成する
+        $comments = Comment::query()
+            ->where('comment', 'LIKE', "%$searchTerm%")
+            ->orWhereHas('user', function ($userQuery) use ($searchTerm) {
+                $userQuery->where('name', 'LIKE', "%$searchTerm%");
+            })
+            ->orWhereDate('created_at', 'LIKE', "%$searchTerm%")
+            ->paginate(10);
 
-        event(new Registered($user));
-
-        return redirect()->route('registered.show');
+        return view('admin.comment-management', compact('comments'));
     }
 
     // 登録完了ページ表示

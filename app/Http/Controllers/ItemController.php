@@ -53,11 +53,6 @@ class ItemController extends Controller
     // コメント機能
     public function comment(Request $request): RedirectResponse
     {
-        // ユーザーがログインしていることを確認する
-        if (!auth()->check()) {
-            return redirect()->back()->with('error', 'コメントを投稿するにはログインが必要です');
-        }
-
         $comment = new Comment();
         $comment->item_id = $request->item_id;
         $comment->user_id = auth()->id();
@@ -66,5 +61,12 @@ class ItemController extends Controller
 
         // 成功メッセージをセットしてリダイレクト
         return redirect()->back()->with('success', 'コメントを投稿しました。');
+    }
+
+    // コメント削除機能
+    public function destroy(Comment $comment)
+    {
+        $comment->delete();
+        return redirect()->back()->with('success', 'コメントを削除しました。');
     }
 }

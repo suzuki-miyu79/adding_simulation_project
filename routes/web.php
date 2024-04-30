@@ -17,8 +17,13 @@ Route::get('/', [ItemController::class, 'showTop'])->name('top');
 // 商品詳細ページ
 Route::get('/item/{item_id}', [ItemController::class, 'index'])->name('item.index');
 
+// admin権限を持つ管理者がアクセス可能
+Route::middleware(['auth', 'admin'])->group(function () {
 
 
+});
+
+// 認証済みユーザーがアクセス可能
 Route::middleware('auth')->group(function () {
 
     // 商品一覧ページ（マイリスト）表示
@@ -61,10 +66,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/search', [ItemController::class, 'search'])->name('search');
     // 管理ページの表示
     Route::get('/admin', [AdminController::class, 'showAdminPage'])->name('admin.show')->middleware(AdminMiddleware::class)->middleware('auth');
+    // コメント管理表示
+    Route::get('/comment-management', [AdminController::class, 'showCommentManagement'])->middleware(AdminMiddleware::class)->middleware('auth');
+    // コメント検索
+    Route::get('/comment-management/search', [AdminController::class, 'searchComment'])->name('comment.search');
+    // コメント削除
+    Route::delete('/comment-management/{comment}', [ItemController::class, 'destroy'])->name('admin.comments.destroy')->middleware(AdminMiddleware::class)->middleware('auth');
     // メール送信フォームの表示
-    Route::get('/mailform', [AdminController::class, 'showMailForm'])->name('mailform.show');
+    Route::get('/mailform', [AdminController::class, 'showMailForm'])->name('mailform.show')->middleware(AdminMiddleware::class)->middleware('auth');
     // メール送信
-    Route::post('/send-mail', [AdminController::class, 'sendMail'])->name('send.mail');
+    Route::post('/send-mail', [AdminController::class, 'sendMail'])->name('send.mail')->middleware(AdminMiddleware::class)->middleware('auth');
 });
 
 require __DIR__ . '/auth.php';

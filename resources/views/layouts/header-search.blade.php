@@ -50,6 +50,9 @@
                             </li>
                         </form>
                         <li><a href="/mypage">マイページ</a></li>
+                        @if (auth()->user()->role === 'admin')
+                            <li><a href="/comment-management">管理</a></li>
+                        @endif
                     </ul>
                 @else
                     {{-- 認証前のナビゲーション --}}
