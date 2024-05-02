@@ -8,6 +8,28 @@
     margin: 1em 0;
 }
 
+.comment-management__search {
+    margin-bottom: 2em;
+}
+
+.search-form {
+    display: flex;
+}
+
+.search-form img {
+    margin-left: -2em;
+    width: 20px;
+    height: auto;
+}
+
+.comment-management__search input {
+    padding: 0.7em 1em;
+    border-radius: 5px;
+    border: 1px solid #D9D9D9;
+    background-color: #f0f0f0;
+    width: 30em;
+}
+
 .comment-management table,
 .comment-management th,
 .comment-management td {
@@ -21,4 +43,13 @@
 
 .comment-management td {
     padding: 0.2em 1em;
+}
+
+.comment-management__table button {
+    padding: 0.2em;
+    border: none;
+    border-radius: 3px;
+    background-color: #FF5555;
+    color: #fff;
+    cursor: pointer;
 }

@@ -75,3 +75,35 @@
 .search__form-input::placeholder {
     color: #000;
 }
+
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.sidebar ul {
+    padding: 1em 0 0 0;
+}
+
+.sidebar ul li {
+    list-style: none;
+    padding: 1em 2em;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    font-weight: bold;
+    color: gray;
+}
+
+.sidebar ul li:hover {
+    background-color: rgb(255, 225, 225);
+}
+
+.sidebar ul li a.active {
+    color: red;
+}
+
+.container main {
+    padding: 0 8vw;
+}

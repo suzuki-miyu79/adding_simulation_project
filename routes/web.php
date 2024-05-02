@@ -17,12 +17,6 @@ Route::get('/', [ItemController::class, 'showTop'])->name('top');
 // 商品詳細ページ
 Route::get('/item/{item_id}', [ItemController::class, 'index'])->name('item.index');
 
-// admin権限を持つ管理者がアクセス可能
-Route::middleware(['auth', 'admin'])->group(function () {
-
-
-});
-
 // 認証済みユーザーがアクセス可能
 Route::middleware('auth')->group(function () {
 

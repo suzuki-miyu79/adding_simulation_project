@@ -1,4 +1,4 @@
-@extends('layouts.header')
+@extends('layouts.admin-header')
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/mail.css') }}">

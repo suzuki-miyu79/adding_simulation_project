@@ -18,7 +18,7 @@ class AdminController extends Controller
     // 管理者ページ表示
     public function showAdminPage()
     {
-        return view('admin-page');
+        return view('admin.admin-page');
     }
 
     // コメント管理ページ表示
@@ -32,15 +32,17 @@ class AdminController extends Controller
     // コメント検索機能
     public function searchComment(Request $request)
     {
-        $searchTerm = $request->input('query');
+        // 検索キーワードを取得
+        $keyword = $request->input('keyword');
 
-        // コメント内容・投稿者名・日付で部分一致検索を行うクエリを作成する
+        // コメント内容・投稿者名・日付で部分一致検索を行うクエリを作成
         $comments = Comment::query()
-            ->where('comment', 'LIKE', "%$searchTerm%")
-            ->orWhereHas('user', function ($userQuery) use ($searchTerm) {
-                $userQuery->where('name', 'LIKE', "%$searchTerm%");
+            ->where('comment', 'like', "%$keyword%")
+            ->orWhereHas('user', function ($query) use ($keyword) {
+                $query->where('name', 'like', "%$keyword%");
             })
-            ->orWhereDate('created_at', 'LIKE', "%$searchTerm%")
+            ->orWhereDate('created_at', 'like', "%$keyword%")
+
             ->paginate(10);
 
         return view('admin.comment-management', compact('comments'));

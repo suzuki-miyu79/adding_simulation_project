@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}">
     <link rel="stylesheet" href="{{ asset('css/header.css') }}">
     @yield('css')
+    <style>
+        
+    </style>
 </head>
 
 <body>
@@ -68,9 +71,22 @@
         </div>
     </header>
 
-    <main>
-        @yield('content')
-    </main>
+    <div class="container">
+        <div class="sidebar">
+            <!-- 左側の固定メニューの内容 -->
+            <ul>
+                <li><a href="#" class="{{ Request::is('user-management') ? 'active' : '' }}"
+                        id="user-management">ユーザー管理</a></li>
+                <li><a href="/comment-management" class="{{ Request::is('comment-management') ? 'active' : '' }}"
+                        id="comment-management">コメント管理</a></li>
+                <li><a href="/mailform" class="{{ Request::is('mailform') ? 'active' : '' }}"
+                        id="mailform">メール送信フォーム</a></li>
+            </ul>
+        </div>
+        <main>
+            @yield('content')
+        </main>
+    </div>
 </body>
 
 <script>
@@ -78,6 +94,16 @@
     document.querySelectorAll('.close').forEach(function(closeButton) {
         closeButton.addEventListener('click', function() {
             this.closest('.alert').style.display = 'none';
+        });
+    });
+
+    // 選択したメニューの色を変更
+    const menuLinks = document.querySelectorAll('.sidebar ul li a');
+    menuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            // 選択されたメニューにactiveクラスを付与し、他のメニューからactiveクラスを削除する
+            menuLinks.forEach(link => link.classList.remove('active'));
+            link.classList.add('active');
         });
     });
 </script>
