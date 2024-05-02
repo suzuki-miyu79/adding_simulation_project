@@ -40,7 +40,7 @@ class ItemFactory extends Factory
             'description' => $this->faker->paragraph,
             'price' => $this->faker->randomNumber(4),
             'image' => $this->faker->imageUrl(),
-            'user' => $user->id
+            'seller_user_id' => $user->id
         ];
     }
 }

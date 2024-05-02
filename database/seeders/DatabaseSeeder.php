@@ -6,6 +6,7 @@ use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Item;
+use App\Models\Comment;
 
 class DatabaseSeeder extends Seeder
 {
@@ -23,6 +24,7 @@ class DatabaseSeeder extends Seeder
 
         // ダミーデータを生成する
         Item::factory(10)->create();
+        Comment::factory(50)->create();
 
     }
 }
