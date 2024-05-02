@@ -39,5 +39,6 @@
                 @endforeach
             </table>
         </div>
+        {{ $comments->links() }}
     </div>
 @endsection

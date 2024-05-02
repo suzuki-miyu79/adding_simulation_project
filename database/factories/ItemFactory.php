@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Item;
 use App\Models\ChildCategory;
 use App\Models\Condition;
+use App\Models\User;
 use Faker\Generator as Faker;
 
 /**
@@ -30,6 +31,7 @@ class ItemFactory extends Factory
         // ChildCategory と Condition のデータを生成してデータベースに保存
         $childCategory = ChildCategory::factory()->create();
         $condition = Condition::factory()->create();
+        $user = User::factory()->create();
 
         return [
             'child_category_id' => $childCategory->id,
@@ -38,6 +40,7 @@ class ItemFactory extends Factory
             'description' => $this->faker->paragraph,
             'price' => $this->faker->randomNumber(4),
             'image' => $this->faker->imageUrl(),
+            'user' => $user->id
         ];
     }
 }
