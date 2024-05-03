@@ -53,3 +53,19 @@
     color: #fff;
     cursor: pointer;
 }
+
+/* コメントの全文表示ポップアップ */
+.popup {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 5px;
+    max-width: 300px;
+    word-wrap: break-word;
+    z-index: 1000;
+}
+
+/* ページネーション */
+.pagination {
+    margin-top: 1em;
+}
