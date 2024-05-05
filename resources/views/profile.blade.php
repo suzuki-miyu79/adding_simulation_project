@@ -2,6 +2,7 @@
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
+    <script src="https://yubinbango.github.io/yubinbango/yubinbango.js" charset="UTF-8"></script>
 @endsection
 
 @section('content')
@@ -9,8 +10,9 @@
         <div class="profile__heading">
             <h2>プロフィール設定</h2>
         </div>
-        <form method="POST" action="{{ route('profile.setting') }}" enctype="multipart/form-data">
+        <form　 class="h-adr" method="POST" action="{{ route('profile.setting') }}" enctype="multipart/form-data">
             @csrf
+            <span class="p-country-name" style="display:none;">Japan</span>
             <div class="user__img">
                 <div class="user__img-img">
                     <img id="profile_preview" src="{{ asset($user->image) }}" alt="">
@@ -31,7 +33,8 @@
                 </div>
                 <div class="form__group">
                     <label for="">郵便番号</label>
-                    <input id="postcode" type="text" name="postcode" value="{{ old('postcode', $user->postcode) }}">
+                    <input class="p-postal-code" id="postcode" type="text" name="postcode"
+                        value="{{ old('postcode', $user->postcode) }}">
                     <div class="form__error">
                         @error('postcode')
                             {{ $message }}
@@ -40,7 +43,8 @@
                 </div>
                 <div class="form__group">
                     <label for="">住所</label>
-                    <input id="address" type="text" name="address" value="{{ old('address', $user->address) }}">
+                    <input class="p-region p-locality p-street-address p-extended-address" id="address" type="text"
+                        name="address" value="{{ old('address', $user->address) }}">
                     <div class="form__error">
                         @error('address')
                             {{ $message }}
@@ -64,8 +68,8 @@
         </form>
     </div>
 
-    {{-- プロフィール画像のプレビュー表示 --}}
     <script>
+        // プロフィール画像のプレビュー表示
         function previewImage(event) {
             var input = event.target;
             var reader = new FileReader();
@@ -76,5 +80,25 @@
             };
             reader.readAsDataURL(input.files[0]);
         }
+
+        // 郵便番号の自動半角変換
+        document.addEventListener('DOMContentLoaded', function() {
+            var postcodeInput = document.querySelector('input[name="postcode"]');
+
+            // 郵便番号入力フィールドに対してイベントリスナーを追加
+            postcodeInput.addEventListener('input', function() {
+                // 全角を半角に変換
+                var convertedValue = toHalfWidth(this.value);
+                // 変換した値をフォームにセット
+                this.value = convertedValue;
+            });
+
+            // 全角を半角に変換する関数
+            function toHalfWidth(value) {
+                return value.replace(/[０-９]/g, function(s) {
+                    return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
+                });
+            }
+        });
     </script>
 @endsection
