@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class MypageController extends Controller
 {
+    // マイページの表示
     public function index()
     {
         // ログインしているユーザーの情報を取得
@@ -18,11 +19,14 @@ class MypageController extends Controller
         return view('mypage', compact('user', 'items'));
     }
 
+    // プロフィール設定ページの表示
     public function create()
     {
-        return view('profile');
+        $user = Auth::user();
+        return view('profile', compact('user'));
     }
 
+    // プロフィール登録処理
     public function store(ProfileRequest $request)
     {
         // ログインしているユーザーの情報を取得
@@ -58,7 +62,7 @@ class MypageController extends Controller
         return redirect()->route('mypage')->with('success', 'プロフィールを更新しました');
     }
 
-    // 購入した商品ページ
+    // 購入した商品ページの表示
     public function showPurchaseProduct()
     {
         // ログインしているユーザーの情報を取得

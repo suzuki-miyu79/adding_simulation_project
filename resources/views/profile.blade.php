@@ -13,7 +13,7 @@
             @csrf
             <div class="user__img">
                 <div class="user__img-img">
-                    <img id="profile_preview" src="" alt="">
+                    <img id="profile_preview" src="{{ asset($user->image) }}" alt="">
                 </div>
                 <label>
                     <input type="file" id="profile_image" name="profile_image" onchange="previewImage(event)">画像を選択する
@@ -22,7 +22,7 @@
             <div class="profile-form">
                 <div class="form__group">
                     <label for="">ユーザー名</label>
-                    <input id="name" type="text" name="name" :value="old('name')" autofocus>
+                    <input id="name" type="text" name="name" value="{{ old('name', $user->name) }}" autofocus>
                     <div class="form__error">
                         @error('name')
                             {{ $message }}
@@ -31,7 +31,7 @@
                 </div>
                 <div class="form__group">
                     <label for="">郵便番号</label>
-                    <input id="postcode" type="text" name="postcode">
+                    <input id="postcode" type="text" name="postcode" value="{{ old('postcode', $user->postcode) }}">
                     <div class="form__error">
                         @error('postcode')
                             {{ $message }}
@@ -40,7 +40,7 @@
                 </div>
                 <div class="form__group">
                     <label for="">住所</label>
-                    <input id="address" type="text" name="address">
+                    <input id="address" type="text" name="address" value="{{ old('address', $user->address) }}">
                     <div class="form__error">
                         @error('address')
                             {{ $message }}
@@ -49,7 +49,8 @@
                 </div>
                 <div class="form__group">
                     <label for="">建物名</label>
-                    <input id="building_name" type="text" name="building_name">
+                    <input id="building_name" type="text" name="building_name"
+                        value="{{ old('building_name', $user->building_name) }}">
                     <div class="form__error">
                         @error('building_name')
                             {{ $message }}
