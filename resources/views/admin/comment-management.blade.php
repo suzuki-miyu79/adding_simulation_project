@@ -26,10 +26,11 @@
                 @foreach ($comments as $comment)
                     <tr>
                         <td class="comment-cell" data-full-text="{{ $comment->comment }}">
-                            {{ strlen($comment->comment) > 20 ? substr($comment->comment, 0, 20) . '...' : $comment->comment }}
+                            {{ Str::limit($comment->comment, 30) }}@if (strlen($comment->comment) > 30)
+                            @endif
                         </td>
-                        <td>{{ $comment->user->name }}</td>
-                        <td>{{ $comment->created_at->format('Y-m-d') }}</td>
+                        <td class="name-cell">{{ $comment->user->name }}</td>
+                        <td class="day-cell">{{ $comment->created_at->format('Y-m-d') }}</td>
                         <td>
                             <form action="{{ route('admin.comments.destroy', $comment->id) }}" method="POST">
                                 @csrf
@@ -47,25 +48,25 @@
     </div>
 
     <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // 各コメントセルにマウスオーバー時のイベントを追加
-        document.querySelectorAll('.comment-cell').forEach(function (cell) {
-            cell.addEventListener('mouseenter', function () {
-                // ポップアップを作成して全文を表示
-                var popup = document.createElement('div');
-                popup.classList.add('popup');
-                popup.textContent = this.dataset.fullText;
-                // ポップアップをセルの下に挿入
-                this.appendChild(popup);
-            });
-            cell.addEventListener('mouseleave', function () {
-                // マウスがセルから離れたらポップアップを削除
-                var popup = this.querySelector('.popup');
-                if (popup) {
-                    popup.remove();
-                }
+        document.addEventListener('DOMContentLoaded', function() {
+            // 各コメントセルにマウスオーバー時のイベントを追加
+            document.querySelectorAll('.comment-cell').forEach(function(cell) {
+                cell.addEventListener('mouseenter', function() {
+                    // ポップアップを作成して全文を表示
+                    var popup = document.createElement('div');
+                    popup.classList.add('popup');
+                    popup.textContent = this.dataset.fullText;
+                    // ポップアップをセルの下に挿入
+                    this.appendChild(popup);
+                });
+                cell.addEventListener('mouseleave', function() {
+                    // マウスがセルから離れたらポップアップを削除
+                    var popup = this.querySelector('.popup');
+                    if (popup) {
+                        popup.remove();
+                    }
+                });
             });
         });
-    });
-</script>
+    </script>
 @endsection

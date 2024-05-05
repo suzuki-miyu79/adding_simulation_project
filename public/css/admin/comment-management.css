@@ -45,6 +45,14 @@
     padding: 0.2em 1em;
 }
 
+.comment-cell {
+    width: 23em;
+}
+
+.name-cell {
+    width: 10em;
+}
+
 .comment-management__table button {
     padding: 0.2em;
     border: none;
