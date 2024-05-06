@@ -10,7 +10,7 @@
         <div class="profile__heading">
             <h2>プロフィール設定</h2>
         </div>
-        <form　 class="h-adr" method="POST" action="{{ route('profile.setting') }}" enctype="multipart/form-data">
+        <form class="h-adr" method="POST" action="{{ route('profile.setting') }}" enctype="multipart/form-data">
             @csrf
             <span class="p-country-name" style="display:none;">Japan</span>
             <div class="user__img">
