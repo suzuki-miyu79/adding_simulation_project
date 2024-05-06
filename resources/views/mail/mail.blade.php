@@ -12,10 +12,15 @@
                 @csrf
                 <div class="mail__content__form-recipient">
                     <label for="recipient">宛先:</label>
+
+                    <div class="select-all"> {{-- 全件付け外し機能 --}}
+                        <button type="button" id="toggle-selection-button">全件選択</button>
+                    </div>
+
                     @foreach ($users as $user)
                         <div class="mail__content__form-recipient-item">
                             <input type="checkbox" id="recipient_{{ $user->id }}" name="recipients[]"
-                                value="{{ $user->email }}" checked>
+                                value="{{ $user->email }}">
                             <label for="recipient_{{ $user->id }}">{{ $user->name }}</label>
                         </div>
                     @endforeach
@@ -30,4 +35,33 @@
             </form>
         </div>
     </div>
+
+    {{-- 全件付け外し機能 --}}
+    <script>
+        var toggleSelectionButton = document.getElementById('toggle-selection-button');
+
+        toggleSelectionButton.addEventListener('click', function() {
+            var checkboxes = document.querySelectorAll(
+                '.mail__content__form-recipient-item input[type="checkbox"]');
+            var allUnchecked = true;
+
+            checkboxes.forEach(function(checkbox) {
+                if (checkbox.checked) {
+                    allUnchecked = false;
+                }
+            });
+
+            if (allUnchecked) {
+                checkboxes.forEach(function(checkbox) {
+                    checkbox.checked = true;
+                });
+                toggleSelectionButton.textContent = '全件解除';
+            } else {
+                checkboxes.forEach(function(checkbox) {
+                    checkbox.checked = false;
+                });
+                toggleSelectionButton.textContent = '全件選択';
+            }
+        });
+    </script>
 @endsection

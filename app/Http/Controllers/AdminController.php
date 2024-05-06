@@ -60,7 +60,7 @@ class AdminController extends Controller
         // ユーザーのリストを取得
         $users = User::all();
 
-        return view('mail', compact('users'));
+        return view('mail.mail', compact('users'));
     }
 
     // メール送信機能
