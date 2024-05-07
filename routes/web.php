@@ -62,8 +62,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin', [AdminController::class, 'showAdminPage'])->name('admin.show')->middleware(AdminMiddleware::class)->middleware('auth');
     // ユーザー管理表示
     Route::get('/user-management', [AdminController::class, 'showUserManagement'])->name('admin.user')->middleware(AdminMiddleware::class)->middleware('auth');
-    // ユーザー検索
-    Route::get('/user-management/search', [AdminController::class, 'searchUser'])->name('comment.search');
     // ユーザー削除
     Route::delete('/user-management/{user}', [AdminController::class, 'destroy'])->name('admin.users.destroy')->middleware(AdminMiddleware::class)->middleware('auth');
 

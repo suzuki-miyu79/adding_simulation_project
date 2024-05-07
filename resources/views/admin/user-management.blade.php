@@ -1,41 +1,38 @@
 @extends('layouts.admin-header')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/admin/comment-management.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/user-management.css') }}">
 @endsection
 
 @section('content')
-    <div class="comment-management">
-        <div class="comment-management__header">
-            <h2>コメント管理</h2>
+    <div class="user-management">
+        <div class="user-management__header">
+            <h2>ユーザー管理</h2>
         </div>
-        <div class="comment-management__search">
-            <form action="{{ route('comment.search') }}" method="GET" class="search-form">
-                <input type="text" name="keyword" placeholder="コメント内容や投稿者を検索">
+        <div class="user-management__search">
+            <form action="{{ route('admin.user') }}" method="GET" class="search-form">
+                <input type="text" name="search" placeholder="ユーザー名またはメールアドレスを検索">
                 <img src="/images/search-icon.svg" alt="">
             </form>
         </div>
-        <div class="comment-management__table">
+        <div class="user-management__table">
             <table>
                 <tr>
-                    <th>コメント</th>
-                    <th>投稿者</th>
-                    <th>日付</th>
+                    <th>ユーザー名</th>
+                    <th>メールアドレス</th>
+                    <th>登録日</th>
                     <th>削除</th>
                 </tr>
-                @foreach ($comments as $comment)
+                @foreach ($users as $user)
                     <tr>
-                        <td class="comment-cell" data-full-text="{{ $comment->comment }}">
-                            {{ Str::limit($comment->comment, 30) }}@if (strlen($comment->comment) > 30)
-                            @endif
-                        </td>
-                        <td class="name-cell">{{ $comment->user->name }}</td>
-                        <td class="day-cell">{{ $comment->created_at->format('Y-m-d') }}</td>
+                        <td class="name-cell">{{ $user->name }}</td>
+                        <td class="email-cell">{{ $user->email }}</td>
+                        <td class="day-cell">{{ $user->created_at->format('Y-m-d') }}</td>
                         <td>
-                            <form action="{{ route('admin.comments.destroy', $comment->id) }}" method="POST">
+                            <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit">削除</button>
+                                <button type="submit" onclick="return confirm('本当に削除しますか？')">削除</button>
                             </form>
                         </td>
                     </tr>
@@ -43,30 +40,7 @@
             </table>
         </div>
         <div class="pagination">
-            {{ $comments->links('vendor.pagination.bootstrap-4') }}
+            {{ $users->links('vendor.pagination.bootstrap-4') }}
         </div>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // 各コメントセルにマウスオーバー時のイベントを追加
-            document.querySelectorAll('.comment-cell').forEach(function(cell) {
-                cell.addEventListener('mouseenter', function() {
-                    // ポップアップを作成して全文を表示
-                    var popup = document.createElement('div');
-                    popup.classList.add('popup');
-                    popup.textContent = this.dataset.fullText;
-                    // ポップアップをセルの下に挿入
-                    this.appendChild(popup);
-                });
-                cell.addEventListener('mouseleave', function() {
-                    // マウスがセルから離れたらポップアップを削除
-                    var popup = this.querySelector('.popup');
-                    if (popup) {
-                        popup.remove();
-                    }
-                });
-            });
-        });
-    </script>
 @endsection

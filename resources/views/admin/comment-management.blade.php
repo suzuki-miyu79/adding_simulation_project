@@ -11,7 +11,7 @@
         </div>
         <div class="comment-management__search">
             <form action="{{ route('comment.search') }}" method="GET" class="search-form">
-                <input type="text" name="keyword" placeholder="コメント内容や投稿者を検索">
+                <input type="text" name="keyword" placeholder="コメント内容または投稿者を検索">
                 <img src="/images/search-icon.svg" alt="">
             </form>
         </div>

@@ -33,7 +33,7 @@ class AdminController extends Controller
                 ->orWhere('email', 'like', "%$search%");
         }
 
-        $users = $users->paginate(10);
+        $users = $users->paginate(10); // 1ページに10件ずつユーザーを取得
 
         return view('admin.user-management', compact('users'));
     }
