@@ -11,19 +11,21 @@
             <form action="{{ route('send.mail') }}" method="POST" class="mail__content__form">
                 @csrf
                 <div class="mail__content__form-recipient">
-                    <label for="recipient">宛先:</label>
-
-                    <div class="select-all"> {{-- 全件付け外し機能 --}}
-                        <button type="button" id="toggle-selection-button">全件選択</button>
-                    </div>
-
-                    @foreach ($users as $user)
-                        <div class="mail__content__form-recipient-item">
-                            <input type="checkbox" id="recipient_{{ $user->id }}" name="recipients[]"
-                                value="{{ $user->email }}">
-                            <label for="recipient_{{ $user->id }}">{{ $user->name }}</label>
+                    <div class="select">
+                        <label for="recipient">宛先:</label>
+                        <div class="select-all"> {{-- 全件付け外し機能 --}}
+                            <button type="button" id="toggle-selection-button">全件選択</button>
                         </div>
-                    @endforeach
+                    </div>
+                    <div class="individual-selection">
+                        @foreach ($users as $user)
+                            <div class="mail__content__form-recipient-item">
+                                <input type="checkbox" id="recipient_{{ $user->id }}" name="recipients[]"
+                                    value="{{ $user->email }}">
+                                <label for="recipient_{{ $user->id }}">{{ $user->name }}</label>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
                 <div class="mail__content__form-text">
                     <label for="message">本文:</label>

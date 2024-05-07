@@ -75,12 +75,17 @@
         <div class="sidebar">
             <!-- 左側の固定メニューの内容 -->
             <ul>
-                <li><a href="#" class="{{ Request::is('user-management') ? 'active' : '' }}"
-                        id="user-management">ユーザー管理</a></li>
-                <li><a href="/comment-management" class="{{ Request::is('comment-management') ? 'active' : '' }}"
-                        id="comment-management">コメント管理</a></li>
-                <li><a href="/mailform" class="{{ Request::is('mailform') ? 'active' : '' }}"
-                        id="mailform">メール送信フォーム</a></li>
+                <a href="/user-management" class="{{ Request::is('user-management') ? 'active' : '' }}"
+                    id="user-management">
+                    <li>ユーザー管理</li>
+                </a></li>
+                <a href="/comment-management" class="{{ Request::is('comment-management') ? 'active' : '' }}"
+                    id="comment-management">
+                    <li>コメント管理</li>
+                </a>
+                <a href="/mailform" class="{{ Request::is('mailform') ? 'active' : '' }}" id="mailform">
+                    <li>メール送信フォーム</li>
+                </a>
             </ul>
         </div>
         <main>

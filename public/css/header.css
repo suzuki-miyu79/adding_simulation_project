@@ -76,6 +76,8 @@
     color: #000;
 }
 
+
+/* 以下、管理ページサイドバー */
 .container {
     display: flex;
     justify-content: space-between;
@@ -83,32 +85,34 @@
 
 .sidebar ul {
     padding: 1em 0 0 0;
+    width: 13em;
 }
 
-.sidebar ul li {
+.sidebar ul a li {
     list-style: none;
     padding: 1em 2em;
 }
 
-.sidebar ul li a {
+.sidebar ul a {
     text-decoration: none;
     font-weight: bold;
     color: gray;
 }
 
-.sidebar ul li:hover {
+.sidebar ul a li:hover {
     background-color: rgb(255, 225, 225);
 }
 
-.sidebar ul li a.active {
+.sidebar ul a.active {
     color: red;
 }
 
 .container main {
+    width: 100%;
     padding: 0 8vw;
 }
 
-/* ページネーションスタイル */
+/* 以下、ページネーションスタイル */
 .pagination {
     display: -ms-flexbox;
     display: flex;

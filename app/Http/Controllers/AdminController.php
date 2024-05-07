@@ -21,6 +21,30 @@ class AdminController extends Controller
         return view('admin.admin-page');
     }
 
+    // ユーザー管理ページ表示
+    public function showUserManagement(Request $request)
+    {
+        $users = User::query();
+
+        // 検索
+        if ($request->has('search')) {
+            $search = $request->input('search');
+            $users->where('name', 'like', "%$search%")
+                ->orWhere('email', 'like', "%$search%");
+        }
+
+        $users = $users->paginate(10);
+
+        return view('admin.user-management', compact('users'));
+    }
+
+    // ユーザー削除
+    public function destroy(User $user)
+    {
+        $user->delete();
+        return redirect()->route('admin.user')->with('success', 'ユーザーを削除しました。');
+    }
+
     // コメント管理ページ表示
     public function showCommentManagement()
     {
