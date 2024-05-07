@@ -33,9 +33,29 @@ class AdminController extends Controller
                 ->orWhere('email', 'like', "%$search%");
         }
 
+        // 日付検索
+        if ($request->has('date')) {
+            $date = $request->input('date');
+            $users->whereDate('created_at', $date);
+
+            // 選択された日付をセッションに保存
+            $request->session()->put('selected_date', $date);
+        } else {
+            // セッションから日付を取得
+            $date = $request->session()->get('selected_date');
+        }
+
         $users = $users->paginate(10); // 1ページに10件ずつユーザーを取得
 
-        return view('admin.user-management', compact('users'));
+        return view('admin.user-management', compact('users', 'date'));
+    }
+
+    // ユーザー管理の検索結果クリア
+    public function clearSearchUser(Request $request)
+    {
+        $request->session()->forget('selected_date'); // 日付検索のセッションを削除
+
+        return redirect()->route('admin.user');
     }
 
     // ユーザー削除
@@ -46,30 +66,45 @@ class AdminController extends Controller
     }
 
     // コメント管理ページ表示
-    public function showCommentManagement()
-    {
-        $comments = Comment::paginate(10); // 1ページに10件ずつコメントを取得
-
-        return view('admin.comment-management', compact('comments'));
-    }
-
-    // コメント検索機能
-    public function searchComment(Request $request)
+    public function showCommentManagement(Request $request)
     {
         // 検索キーワードを取得
         $keyword = $request->input('keyword');
 
-        // コメント内容・投稿者名・日付で部分一致検索を行うクエリを作成
-        $comments = Comment::query()
-            ->where('comment', 'like', "%$keyword%")
-            ->orWhereHas('user', function ($query) use ($keyword) {
-                $query->where('name', 'like', "%$keyword%");
-            })
-            ->orWhereDate('created_at', 'like', "%$keyword%")
+        // コメント内容・投稿者名で部分一致検索を行うクエリを作成
+        $comments = Comment::query();
 
-            ->paginate(10);
+        if ($keyword) {
+            $comments->where('comment', 'like', "%$keyword%")
+                ->orWhereHas('user', function ($query) use ($keyword) {
+                    $query->where('name', 'like', "%$keyword%");
+                });
+        }
 
-        return view('admin.comment-management', compact('comments'));
+        // 日付検索
+        if ($request->has('date')) {
+            $date = $request->input('date');
+            $comments->whereDate('created_at', $date);
+
+            // 選択された日付をセッションに保存
+            $request->session()->put('selected_date', $date);
+        } else {
+            // セッションから日付を取得
+            $date = $request->session()->get('selected_date');
+        }
+
+        // ページネーションを適用
+        $comments = $comments->paginate(10);
+
+        return view('admin.comment-management', compact('comments', 'date'));
+    }
+
+    // コメント管理の検索結果クリア
+    public function clearSearchComment(Request $request)
+    {
+        $request->session()->forget('selected_date'); // 日付検索のセッションを削除
+
+        return redirect()->route('admin.comment');
     }
 
     // 登録完了ページ表示

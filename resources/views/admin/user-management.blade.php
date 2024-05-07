@@ -10,9 +10,14 @@
             <h2>ユーザー管理</h2>
         </div>
         <div class="user-management__search">
-            <form action="{{ route('admin.user') }}" method="GET" class="search-form">
-                <input type="text" name="search" placeholder="ユーザー名またはメールアドレスを検索">
+            <form id="user-search-form" action="{{ route('admin.user') }}" method="GET" class="search-form">
+                <input class="search-name" type="text" name="search" placeholder="ユーザー名またはメールアドレスを検索">
                 <img src="/images/search-icon.svg" alt="">
+                <input class="search-date" type="date" id="date-input" name="date" placeholder="日付を選択"
+                    value="{{ $date ?? '' }}">
+            </form>
+            <form action="{{ route('admin.user.clearSearch') }}" method="GET">
+                <button type="submit">クリア</button>
             </form>
         </div>
         <div class="user-management__table">
@@ -43,4 +48,11 @@
             {{ $users->links('vendor.pagination.bootstrap-4') }}
         </div>
     </div>
+
+    <script>
+        // 日付検索の即時実行
+        document.getElementById('date-input').addEventListener('change', function() {
+            document.getElementById('user-search-form').submit();
+        });
+    </script>
 @endsection

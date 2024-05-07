@@ -64,13 +64,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/user-management', [AdminController::class, 'showUserManagement'])->name('admin.user')->middleware(AdminMiddleware::class)->middleware('auth');
     // ユーザー削除
     Route::delete('/user-management/{user}', [AdminController::class, 'destroy'])->name('admin.users.destroy')->middleware(AdminMiddleware::class)->middleware('auth');
-
+    // ユーザー検索結果クリア
+    Route::get('/user-management/clear-search', [AdminController::class, 'clearSearchUser'])->name('admin.user.clearSearch')->middleware(AdminMiddleware::class)->middleware('auth');
     // コメント管理表示
-    Route::get('/comment-management', [AdminController::class, 'showCommentManagement'])->middleware(AdminMiddleware::class)->middleware('auth');
-    // コメント検索
-    Route::get('/comment-management/search', [AdminController::class, 'searchComment'])->name('comment.search');
+    Route::get('/comment-management', [AdminController::class, 'showCommentManagement'])->name('admin.comment')->middleware(AdminMiddleware::class)->middleware('auth');
     // コメント削除
     Route::delete('/comment-management/{comment}', [ItemController::class, 'destroy'])->name('admin.comments.destroy')->middleware(AdminMiddleware::class)->middleware('auth');
+    // コメント検索結果クリア
+    Route::get('/comment-management/clear-search', [AdminController::class, 'clearSearchComment'])->name('admin.comment.clearSearch')->middleware(AdminMiddleware::class)->middleware('auth');
     // メール送信フォームの表示
     Route::get('/mailform', [AdminController::class, 'showMailForm'])->name('mailform.show')->middleware(AdminMiddleware::class)->middleware('auth');
     // メール送信
