@@ -29,7 +29,9 @@
         <div class="item__list">
             @foreach ($items as $item)
                 <div class="item-card">
-                    <img src="{{ $item->image }}" alt="{{ $item->name }}">
+                    <a href="{{ route('item.index', ['item_id' => $item->id]) }}">
+                        <img src="{{ $item->image }}" alt="{{ $item->name }}">
+                    </a>
                 </div>
             @endforeach
         </div>

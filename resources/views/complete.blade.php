@@ -1,9 +1,12 @@
 @extends('layouts.header-none')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/address-change.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/complete.css') }}">
 @endsection
 
 @section('content')
-    <p>ご購入ありがとうございます</p>
+    <div class="complete">
+        <p>ご購入ありがとうございます</p>
+        <a href="/">トップページに戻る</a>
+    </div>
 @endsection

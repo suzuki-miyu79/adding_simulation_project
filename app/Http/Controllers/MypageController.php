@@ -78,6 +78,7 @@ class MypageController extends Controller
             $item = Item::find($purchase->item_id);
             if ($item) {
                 $itemsData[] = [
+                    'id' => $item->id,
                     'image' => $item->image,
                     'name' => $item->name,
                 ];
