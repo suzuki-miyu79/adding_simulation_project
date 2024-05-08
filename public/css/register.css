@@ -46,3 +46,7 @@
     text-decoration: none;
     font-size: 0.7rem;
 }
+
+.error {
+    color: red;
+}

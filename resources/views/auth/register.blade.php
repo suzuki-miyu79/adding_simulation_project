@@ -14,7 +14,7 @@
             <div class="register-form">
                 <div class="form__group">
                     <label for="">メールアドレス</label>
-                    <input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
+                    <input id="email" class="block mt-1 w-full" type="email" name="email" value="{{ old('email') }}"
                         required autofocus>
                 </div>
                 <div class="form__group">
