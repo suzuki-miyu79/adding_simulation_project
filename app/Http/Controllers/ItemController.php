@@ -21,7 +21,7 @@ class ItemController extends Controller
     // マイリスト表示
     public function showMylist()
     {
-        $favorites = Favorite::where('user_id', auth()->id())->get();
+        $favorites = Favorite::where('user_id', auth()->id())->get(); // お気に入り登録しているアイテムを取得
 
         return view('mylist', compact('favorites'));
     }
@@ -45,7 +45,12 @@ class ItemController extends Controller
         $keyword = $request->input('keyword');
 
         // キーワードに部分一致するアイテムを検索
-        $items = Item::where('name', 'like', '%' . $keyword . '%')->get();
+        $items = Item::where('name', 'like', '%' . $keyword . '%')
+            ->orWhere('brand', 'like', '%' . $keyword . '%')
+            ->orWhereHas('childCategory', function ($query) use ($keyword) {
+                $query->where('name', 'like', '%' . $keyword . '%');
+            })
+            ->get();
 
         return view('search-results', compact('items', 'keyword'));
     }
