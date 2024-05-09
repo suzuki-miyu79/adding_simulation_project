@@ -67,7 +67,7 @@
                     <span id="selected-payment-2"></span>
                 </div>
             </div>
-            <div id="credit-card-info">
+            <div class="pay-info" id="credit-card-info pay">
                 <p class="info-title">クレジットカード情報の入力</p>
                 <form action="{{ route('charge', ['item_id' => $item->id]) }}" method="POST" id="stripe-payment-form">
                     @csrf
@@ -97,7 +97,7 @@
                     </div>
                 </form>
             </div>
-            <div id="bank-transfer-info" style="display: none;">
+            <div class="pay-info" id="bank-transfer-info" style="display: none;">
                 <p class="info-title">銀行振り込み情報:</p>
                 <p>銀行名: XXX銀行</p>
                 <p>口座番号: XXX-XXXXXX-XXXX</p>
@@ -105,7 +105,7 @@
                     <a href="/thanks" class="purchase__button-submit__a">購入する</a>
                 </div>
             </div>
-            <div id="convenience-store-info" style="display: none;">
+            <div class="pay-info" id="convenience-store-info" style="display: none;">
                 <p class="info-title">コンビニ支払い情報:</p>
                 <p>支払い番号: XXXX-XXXX-XXXX</p>
                 <p>有効期限: YYYY/MM/DD</p>
@@ -157,32 +157,9 @@
             // 支払い方法が選択されたときの処理
             document.getElementById('payment-method').addEventListener('change', function() {
                 var selectedPaymentMethod = this.value;
-                var creditCardInfo = document.getElementById('credit_card-info');
-                var bankTransferInfo = document.getElementById('bank-transfer-info');
-                var convenienceStoreInfo = document.getElementById('convenience-store-info');
 
-                // クレジットカード情報の入力フォームの表示を切り替える
-                if (selectedPaymentMethod === 'credit_card') {
-                    creditCardInfo.style.display = 'block';
-                } else {
-                    creditCardInfo.style.display = 'none';
-                }
-
-                // 選択された支払い方法に応じて詳細情報を表示
-                switch (selectedPaymentMethod) {
-                    case 'bank_transfer':
-                        bankTransferInfo.style.display = 'block';
-                        convenienceStoreInfo.style.display = 'none';
-                        break;
-                    case 'convenience_store':
-                        bankTransferInfo.style.display = 'none';
-                        convenienceStoreInfo.style.display = 'block';
-                        break;
-                    default:
-                        bankTransferInfo.style.display = 'none';
-                        convenienceStoreInfo.style.display = 'none';
-                        break;
-                }
+                // 支払い情報の表示を切り替える
+                togglePaymentMethodFields(selectedPaymentMethod);
 
                 // 選択された支払い方法を表示
                 updateSelectedPayment(this.options[this.selectedIndex].text);
