@@ -11,6 +11,7 @@ jobs:
     deploy:
         machine:
             image: circleci/classic:edge
+        resource_class: xlarge
         steps:
             - checkout
             - add_ssh_keys:
