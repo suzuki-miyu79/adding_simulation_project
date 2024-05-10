@@ -44,6 +44,7 @@ class SellController extends Controller
         $item->condition_id = $request->input('condition');
         $item->name = $request->input('name');
         $item->description = $request->input('description');
+        $item->brand = $request->input('brand');
         $item->price = $request->input('price');
         $item->seller_user_id = $sellerUserId;
         // 画像のアップロード処理

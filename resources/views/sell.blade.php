@@ -59,12 +59,18 @@
                         <label for="">商品の説明</label>
                         <input type="text" id="description" name="description" required>
                     </div>
+                    <div class="form__group-input">
+                        <label for="">ブランド名</label>
+                        <span>任意</span>
+                        <input type="text" id="brand" name="brand">
+                    </div>
                 </div>
                 <div class="form__group">
                     <p>販売価格</p>
                     <div class="line"></div>
                     <div class="form__group-input">
                         <label for="">販売価格</label>
+                        <span>&yen;</span>
                         <input type="text" id="price" name="price" required>
                     </div>
                 </div>
