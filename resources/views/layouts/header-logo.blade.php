@@ -24,7 +24,9 @@
         @endif
 
         <div class="header__content">
-            <img src="images/logo.svg" alt="logo">
+            <a href="/">
+                <img src="/images/logo.svg" alt="logo">
+            </a>
         </div>
     </header>
 
