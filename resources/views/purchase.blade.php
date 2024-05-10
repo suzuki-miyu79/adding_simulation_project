@@ -67,7 +67,7 @@
                     <span id="selected-payment-2"></span>
                 </div>
             </div>
-            <div class="pay-info" id="credit-card-info pay">
+            <div class="pay-info" id="credit-card-info">
                 <p class="info-title">クレジットカード情報の入力</p>
                 <form action="{{ route('charge', ['item_id' => $item->id]) }}" method="POST" id="stripe-payment-form">
                     @csrf
