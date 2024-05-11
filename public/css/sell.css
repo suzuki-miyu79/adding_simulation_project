@@ -8,8 +8,9 @@
     text-align: center;
 }
 
-.sell__content h2 {
-    padding: 1.5em 0;
+.sell__content h1 {
+    margin: 0;
+    padding: 1.2em 0;
 }
 
 .form__group {
@@ -18,6 +19,7 @@
 
 .form__group p {
     margin: 0;
+    font-weight: bold;
     font-size: 1.5rem;
     color: gray;
 }
@@ -73,8 +75,25 @@
     border-radius: 3px;
 }
 
+.price {
+    position: relative;
+}
+
+.price span {
+    font-weight: bold;
+    position: absolute;
+    left: 0.8em;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.price input {
+    padding-left: 20px;
+    text-align: right;
+}
+
 .form__button {
-    margin: 4em 0 1em;
+    margin: 4em 0 3em;
 }
 
 .form__button-submit {

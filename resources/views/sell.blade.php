@@ -8,7 +8,7 @@
     <div class="sell__content">
 
         <div class="sell__heading">
-            <h2>商品の出品</h2>
+            <h1>商品の出品</h1>
         </div>
         <form id="sell_form" method="POST" action="{{ route('sell') }}" enctype="multipart/form-data">
             @csrf
@@ -60,8 +60,7 @@
                         <input type="text" id="description" name="description" required>
                     </div>
                     <div class="form__group-input">
-                        <label for="">ブランド名</label>
-                        <span>任意</span>
+                        <label for="">ブランド名（任意）</label>
                         <input type="text" id="brand" name="brand">
                     </div>
                 </div>
@@ -70,8 +69,10 @@
                     <div class="line"></div>
                     <div class="form__group-input">
                         <label for="">販売価格</label>
-                        <span>&yen;</span>
-                        <input type="text" id="price" name="price" required>
+                        <div class="price">
+                            <span>&yen;</span>
+                            <input type="text" id="price" name="price" required>
+                        </div>
                     </div>
                 </div>
                 <div class="form__error">
