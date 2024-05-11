@@ -41,3 +41,32 @@
 .toppage__nav-menu li.active a {
     color: red;
 }
+
+/* 以下、レスポンシブデザイン */
+
+@media screen and (max-width: 768px) {
+    .item-card {
+        height: 10em;
+        width: 10em;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .toppage__nav-menu {
+        display: flex;
+        padding: 3em 2em 0.5em;
+        margin: 0;
+    }
+
+    .item__list {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        padding: 1em;
+    }
+
+    .item-card {
+        height: 8em;
+        width: 8em;
+    }
+}

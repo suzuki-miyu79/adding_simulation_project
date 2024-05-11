@@ -45,7 +45,7 @@
 
 .search__form input {
     padding: 0.6em 1.5em;
-    width: 30em;
+    width: 27em;
     border-radius: 3px;
 }
 
@@ -203,4 +203,64 @@
 .pagination-sm .page-item:last-child .page-link {
     border-top-right-radius: 0.2rem;
     border-bottom-right-radius: 0.2rem;
+}
+
+/* 以下、レスポンシブデザイン */
+@media screen and (max-width: 1100px) {
+
+    .search__form input {
+        padding: 0.6em 1em;
+        width: 20em;
+        border-radius: 3px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .header__content {
+        padding: 0 1em;
+        font-size: 0.9rem;
+    }
+
+    .header__content img {
+        width: 12em;
+    }
+
+    .search__form input {
+        padding: 0.6em 1em;
+        width: 15em;
+        border-radius: 3px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+
+    .header__content {
+        padding: 0 1em;
+        font-size: 0.7rem;
+    }
+
+    .header__content img {
+        width: 9em;
+    }
+
+    .search__form input {
+        padding: 0.4em 0.8em;
+        width: 12em;
+        border-radius: 3px;
+    }
+
+    .header__nav ul {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .header__button a {
+        padding: 0.3em 0.8em;
+        border: none;
+        border-radius: 3px;
+        background-color: #fff;
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
 }
