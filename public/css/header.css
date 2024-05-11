@@ -216,6 +216,7 @@
 }
 
 @media screen and (max-width: 768px) {
+
     .header__content {
         padding: 0 1em;
         font-size: 0.9rem;

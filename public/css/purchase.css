@@ -131,3 +131,72 @@
     color: #fff;
     cursor: pointer;
 }
+
+/* 以下、レスポンシブデザイン */
+
+@media screen and (max-width: 768px) {
+    .purchase__content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .purchase__content-left {
+        padding-top: 0;
+        width: 100%;
+    }
+
+    .purchase__content-right {
+        padding-top: 3em;
+        width: 100%;
+    }
+
+    .purchase__img {
+        width: 40%;
+    }
+
+    .payment {
+        margin-top: 3em;
+    }
+
+    .delivery {
+        margin-top: 4em;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .purchase__content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 2em;
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    .purchase__content-left {
+        padding-top: 0;
+        width: 100%;
+    }
+
+    .purchase__content-right {
+        width: 100%;
+    }
+
+    .purchase__item {
+        display: flex;
+        padding: 0;
+        margin-left: 0;
+    }
+
+    .purchase__img {
+        width: 40%;
+    }
+
+    .payment {
+        margin-top: 3em;
+    }
+
+    .delivery {
+        margin-top: 4em;
+    }
+}
