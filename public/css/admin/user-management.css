@@ -95,3 +95,48 @@
 .pagination {
     margin-top: 1em;
 }
+
+/* 以下、レスポンシブデザイン */
+
+@media screen and (max-width: 768px) {
+    .email-cell {
+        width: 21em;
+    }
+
+    .user-management table,
+    .user-management th,
+    .user-management td,
+    .user-management__table button {
+        font-size: 0.9rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .user-management__search {
+        font-size: 0.7rem;
+    }
+
+    .search-name {
+        width: 11em;
+    }
+
+    .search-date {
+        margin-left: 2em;
+    }
+
+    .user-management__search button {
+        font-size: 0.5rem;
+        padding: 1.5em 0.5em;
+    }
+
+    .user-management table,
+    .user-management th,
+    .user-management td,
+    .user-management__table button {
+        font-size: 0.5rem;
+    }
+
+    .email-cell {
+        width: 21em;
+    }
+}

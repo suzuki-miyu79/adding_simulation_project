@@ -231,6 +231,24 @@
         width: 15em;
         border-radius: 3px;
     }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .sidebar ul {
+        display: flex;
+        justify-content: space-around;
+        padding: 1em 0 0 0;
+        width: 100%;
+        padding: 0;
+    }
+
+    .sidebar ul a li {
+        list-style: none;
+        padding: 1em 0.5em;
+    }
 }
 
 @media screen and (max-width: 480px) {
@@ -263,5 +281,23 @@
         color: #000;
         text-decoration: none;
         cursor: pointer;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .sidebar ul {
+        display: flex;
+        justify-content: space-between;
+        padding: 1em 0 0 0;
+        width: 100%;
+        padding: 0;
+    }
+
+    .sidebar ul a li {
+        list-style: none;
+        padding: 1em 0.5em;
     }
 }

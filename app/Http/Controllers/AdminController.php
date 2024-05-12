@@ -107,12 +107,6 @@ class AdminController extends Controller
         return redirect()->route('admin.comment');
     }
 
-    // 登録完了ページ表示
-    public function showRegistered()
-    {
-        return view('registered');
-    }
-
     // メール送信フォーム表示
     public function showMailForm()
     {

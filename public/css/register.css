@@ -50,3 +50,17 @@
 .error {
     color: red;
 }
+
+/* 以下、レスポンシブデザイン */
+
+@media screen and (max-width: 768px) {
+    .register__content {
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .register__content {
+        width: 70%;
+    }
+}

@@ -62,3 +62,21 @@
     color: #fff;
     cursor: pointer;
 }
+
+/* 以下、レスポンシブデザイン */
+
+@media screen and (max-width: 768px) {
+    .individual-selection {
+        width: 35em;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .mail__content-form {
+        padding: 1em;
+    }
+
+    .individual-selection {
+        width: 100%;
+    }
+}
