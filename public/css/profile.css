@@ -2,7 +2,6 @@
     margin: 0 auto;
     text-align: center;
     width: 40%;
-
 }
 
 .profile__content h2 {
@@ -79,4 +78,18 @@
 
 .form__error {
     color: red;
+}
+
+/* 以下、レスポンシブデザイン */
+
+@media screen and (max-width: 768px) {
+    .profile__content {
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .profile__content {
+        width: 70%;
+    }
 }

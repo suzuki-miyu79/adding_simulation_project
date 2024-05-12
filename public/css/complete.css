@@ -17,3 +17,11 @@
     font-weight: bold;
     cursor: pointer;
 }
+
+/* 以下、レスポンシブデザイン */
+
+@media screen and (max-width: 480px) {
+    .complete p {
+        font-size: 1.5rem;
+    }
+}
