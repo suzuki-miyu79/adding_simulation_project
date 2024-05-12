@@ -1,7 +1,6 @@
 .sell__content {
     margin: 0 auto;
     width: 40%;
-
 }
 
 .sell__heading {
@@ -104,4 +103,18 @@
     background-color: #FF5555;
     color: #fff;
     cursor: pointer;
+}
+
+/* 以下、レスポンシブデザイン */
+
+@media screen and (max-width: 768px) {
+    .sell__content {
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .sell__content {
+        width: 70%;
+    }
 }
