@@ -52,9 +52,22 @@ class PurchaseController extends Controller
         return redirect()->route('purchase.index', ['item_id' => $item->id])->with('success', '配送先住所を更新しました');
     }
 
+    // クレジットカード決済完了
     public function complete()
     {
         return view('complete');
+    }
+
+    // 銀行振込購入処理完了
+    public function completeBank()
+    {
+        return view('bank-transfer-payment');
+    }
+
+    // コンビニ購入処理完了
+    public function completeConvenienceStore()
+    {
+        return view('convenience-store-payment');
     }
 
 }

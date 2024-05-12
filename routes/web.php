@@ -38,6 +38,14 @@ Route::middleware('auth')->group(function () {
     Route::post('/charge/{item_id}', [PaymentController::class, 'charge'])->name('charge');
     // 購入完了ページ
     Route::get('/complete/{item_id}', [PurchaseController::class, 'complete'])->name('complete');
+    // 銀行振込購入処理
+    Route::post('/purchase/bank/{item_id}', [PaymentController::class, 'bankPaymentPurchase'])->name('purchase.bank');
+    // 購入完了ページ
+    Route::get('/complete-b/{item_id}', [PurchaseController::class, 'completeBank'])->name('complete.bank');
+    // コンビニ支払購入処理
+    Route::post('/purchase/convenience-store/{item_id}', [PaymentController::class, 'convenienceStorePaymentPurchase'])->name('purchase.convenienceStore');
+    // 購入完了ページ
+    Route::get('/complete-c/{item_id}', [PurchaseController::class, 'completeConvenienceStore'])->name('complete.convenienceStore');
     // マイページ(出品した商品)
     Route::get('/mypage', [MypageController::class, 'index'])->name('mypage');
     // マイページ(購入した商品)

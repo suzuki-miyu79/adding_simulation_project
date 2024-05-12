@@ -98,20 +98,26 @@
                 </form>
             </div>
             <div class="pay-info" id="bank-transfer-info" style="display: none;">
-                <p class="info-title">銀行振り込み情報:</p>
-                <p>銀行名: XXX銀行</p>
-                <p>口座番号: XXX-XXXXXX-XXXX</p>
-                <div class="purchase__button">
-                    <a href="/thanks" class="purchase__button-submit__a">購入する</a>
-                </div>
+                <form action="{{ route('purchase.bank', ['item_id' => $item->id]) }}" method="POST">
+                    @csrf
+                    <p class="info-title">銀行振り込み情報</p>
+                    <p>銀行名: すいか銀行</p>
+                    <p>口座番号: 301-405809-7929</p>
+                    <div class="purchase__button">
+                        <button class="purchase__button-submit">購入する</button>
+                    </div>
+                </form>
             </div>
             <div class="pay-info" id="convenience-store-info" style="display: none;">
-                <p class="info-title">コンビニ支払い情報:</p>
-                <p>支払い番号: XXXX-XXXX-XXXX</p>
-                <p>有効期限: YYYY/MM/DD</p>
-                <div class="purchase__button">
-                    <a href="/thanks" class="purchase__button-submit__a">購入する</a>
-                </div>
+                <form action="{{ route('purchase.convenienceStore', ['item_id' => $item->id]) }}" method="POST">
+                    @csrf
+                    <p class="info-title">コンビニ支払情報</p>
+                    <p>支払番号: <span id="payment-number"></span></p>
+                    <p>有効期限: <span id="expiry-date"></span></p>
+                    <div class="purchase__button">
+                        <button class="purchase__button-submit">購入する</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -227,5 +233,41 @@
             form.appendChild(hiddenInput);
             form.submit();
         }
+
+        // ランダムな12桁の数字を生成する関数
+        function generateRandomNumber() {
+            // 12桁のランダムな数字を生成
+            var randomNumber = Math.floor(100000000000 + Math.random() * 900000000000).toString();
+            // ハイフンを挿入する位置を計算
+            var formattedNumber = randomNumber.substring(0, 4) + '-' + randomNumber.substring(4, 8) + '-' + randomNumber
+                .substring(8);
+            // 生成したフォーマット済みの数字を表示
+            document.getElementById('payment-number').textContent = formattedNumber;
+            // セッションストレージに支払い番号を保存
+            sessionStorage.setItem('paymentNumber', formattedNumber);
+        }
+
+        // 今日から一週間後の日付を計算する関数
+        function calculateExpiryDate() {
+            // 今日の日付を取得
+            var today = new Date();
+            // 一週間後の日付を計算
+            var expiryDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 7);
+            // 年、月、日を取得
+            var year = expiryDate.getFullYear();
+            var month = ('0' + (expiryDate.getMonth() + 1)).slice(-2);
+            var day = ('0' + expiryDate.getDate()).slice(-2);
+            // 有効期限を表示
+            var formattedExpiryDate = year + '/' + month + '/' + day;
+            document.getElementById('expiry-date').textContent = formattedExpiryDate;
+            // セッションストレージに有効期限を保存
+            sessionStorage.setItem('expiryDate', formattedExpiryDate);
+        }
+
+        // ページが読み込まれたときに両方の関数を実行
+        window.onload = function() {
+            generateRandomNumber();
+            calculateExpiryDate();
+        };
     </script>
 @endsection

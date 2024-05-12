@@ -1,8 +1,10 @@
 .complete {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.complete p {
+.thanks {
     font-size: 2rem;
     font-weight: bold;
 }
@@ -18,10 +20,29 @@
     cursor: pointer;
 }
 
-/* 以下、レスポンシブデザイン */
+/* 以下、銀行振込、コンビニ支払い購入処理完了ページ */
+.table table,
+.table th,
+.table td {
+    border: 1px solid black;
+}
 
+.table table {
+    margin-bottom: 2em;
+}
+
+.table th {
+    padding: 0.5em 1em;
+    background-color: #D9D9D9;
+}
+
+.table td {
+    padding: 0.2em 1em;
+}
+
+/* 以下、レスポンシブデザイン */
 @media screen and (max-width: 480px) {
-    .complete p {
+    .thanks {
         font-size: 1.5rem;
     }
 }

@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="complete">
-        <p>ご購入ありがとうございます</p>
+        <p class="thanks">ご購入ありがとうございます</p>
         <a href="/">トップページに戻る</a>
     </div>
 @endsection

@@ -17,7 +17,7 @@ class PaymentController extends Controller
         // ユーザーIDを取得
         $userId = auth()->id();
 
-        // 商品の価格を取得
+        // 商品の情報を取得
         $item = Item::findOrFail($item_id);
 
         Stripe::setApiKey(env('STRIPE_SECRET')); //シークレットキー
@@ -49,5 +49,41 @@ class PaymentController extends Controller
 
             return back()->with('error', '支払い処理中にエラーが発生しました。もう一度お試しください。');
         }
+    }
+
+    // 銀行振込購入
+    public function bankPaymentPurchase($item_id)
+    {
+        // ユーザーIDを取得
+        $userId = auth()->id();
+
+        // 商品の情報を取得
+        $item = Item::findOrFail($item_id);
+
+        // Purchasesテーブルに購入情報を登録
+        Purchase::create([
+            'item_id' => $item_id,
+            'buyer_user_id' => $userId,
+        ]);
+
+        return redirect()->route('complete.bank', ['item_id' => $item->id]);
+    }
+
+    // コンビニ支払い購入
+    public function convenienceStorePaymentPurchase($item_id)
+    {
+        // ユーザーIDを取得
+        $userId = auth()->id();
+
+        // 商品の情報を取得
+        $item = Item::findOrFail($item_id);
+
+        // Purchasesテーブルに購入情報を登録
+        Purchase::create([
+            'item_id' => $item_id,
+            'buyer_user_id' => $userId,
+        ]);
+
+        return redirect()->route('complete.convenienceStore', ['item_id' => $item->id]);
     }
 }
