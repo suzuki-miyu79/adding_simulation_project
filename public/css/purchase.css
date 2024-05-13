@@ -68,6 +68,14 @@
     color: #305DFF;
 }
 
+.payment-bottom {
+    margin-top: 1em;
+}
+
+.payment-bottom select {
+    padding: 0.5em 1em;
+}
+
 .attention {
     color: red;
 }
@@ -104,6 +112,10 @@
 
 .pay-info {
     padding-top: 1em;
+}
+
+.info-title {
+    font-weight: bold;
 }
 
 .purchase__button {

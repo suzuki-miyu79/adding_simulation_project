@@ -14,7 +14,7 @@
         <div class="detail__content-right">
             <h2 class="detail__item-name">{{ $item->name }}</h2>
             <p class="detail__item-brand">{{ $item->brand }}</p>
-            <p class="detail__item-price">¥{{ $item->price }}(値段)</p>
+            <p class="detail__item-price">¥{{ number_format($item->price) }}(値段)</p>
             <div class="detail__group">
                 <div class="detail__group-inner">
                     @if (auth()->check())
