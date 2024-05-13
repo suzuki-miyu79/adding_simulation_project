@@ -122,7 +122,7 @@ class ItemSeeder extends Seeder
             ],
             [
                 'child_category_id' => 4,
-                'condition_id' => 1,
+                'condition_id' => 3,
                 'name' => '',
                 'description' => '最強レベル シージェネシスのカードになります。',
                 'price' => '1250',
