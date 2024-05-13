@@ -29,7 +29,7 @@
                         <option value="bank_transfer">銀行振り込み</option>
                         <option value="convenience_store">コンビニ支払い</option>
                     </select>
-                    <p>選択された支払方法: <span id="selected-payment"></span></p>
+                    <p>選択中の支払方法: <span id="selected-payment"></span></p>
                 </div>
             </div>
             <div class="delivery">
@@ -43,11 +43,14 @@
                         <p class="postcode">{{ session('delivery_address.postcode') }}</p>
                         <p class="address">{{ session('delivery_address.address') }}</p>
                         <p class="building-name">{{ session('delivery_address.building_name') }}</p>
-                    @else
-                        {{-- 配送先未変更の場合の表示 --}}
+                    @elseif ($user->postcode && $user->address && $user->building_name)
+                        {{-- ユーザーの情報が空でない場合の表示 --}}
                         <p class="postcode">{{ $user->postcode }}</p>
                         <p class="address">{{ $user->address }}</p>
                         <p class="building-name">{{ $user->building_name }}</p>
+                    @else
+                        {{-- 配送先が設定されていない場合の表示 --}}
+                        <p class="attention">配送先を設定してください</p>
                     @endif
                 </div>
             </div>

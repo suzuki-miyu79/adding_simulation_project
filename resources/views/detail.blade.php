@@ -102,7 +102,6 @@
                             <textarea name="comment"></textarea>
                             <button type="submit">コメントを送信する</button>
                         @else
-                            <p>コメントを送信するにはログインが必要です。</p>
                             <a href="{{ route('login') }}">ログインしてコメントする</a>
                         @endif
                     </div>
