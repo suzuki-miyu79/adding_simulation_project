@@ -20,11 +20,11 @@ class DatabaseSeeder extends Seeder
             Child_categorySeeder::class,
             ConditionSeeder::class,
             UserSeeder::class,
+            ItemSeeder::class,
         ]);
 
         // ダミーデータを生成する
-        Item::factory(10)->create();
-        Comment::factory(50)->create();
+        Comment::factory(100)->create();
 
     }
 }
