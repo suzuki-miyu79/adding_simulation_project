@@ -1,3 +1,7 @@
+.alert {
+    position: relative;
+}
+
 .alert-success {
     padding: 2em;
     border-radius: 5px;
@@ -6,7 +10,7 @@
     background-color: #d4edda;
     border-color: #c3e6cb;
     position: fixed;
-    top: 2.5em;
+    top: 3em;
     right: 6em;
     z-index: 1000;
 }
@@ -19,9 +23,25 @@
     background-color: #f8d7da;
     border-color: #f5c6cb;
     position: fixed;
-    top: 2.5em;
+    top: 3em;
     right: 6em;
     z-index: 1000;
+}
+
+.close {
+    position: absolute;
+    top: 0;
+    right: 0.5em;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    outline: none;
+}
+
+.close span {
+    font-size: 2rem;
+    color: #000;
 }
 
 .header {

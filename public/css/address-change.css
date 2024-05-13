@@ -41,3 +41,17 @@
     color: #fff;
     cursor: pointer;
 }
+
+/* 以下、レスポンシブデザイン */
+
+@media screen and (max-width: 768px) {
+    .address-change__content {
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .address-change__contentt {
+        width: 70%;
+    }
+}
