@@ -105,6 +105,10 @@
     cursor: pointer;
 }
 
+.error {
+    color: red;
+}
+
 /* 以下、レスポンシブデザイン */
 
 @media screen and (max-width: 768px) {

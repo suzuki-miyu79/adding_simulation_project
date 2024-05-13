@@ -22,25 +22,27 @@ class SellRequest extends FormRequest
     public function rules(): array
     {
         return [
-            // 'category' => ['required'],
+            'parent_category' => ['required'],
+            'child_category' => ['required'],
             'condition' => ['required'],
             'name' => ['required', 'string', 'max:191'],
             'description' => ['required'],
             'price' => ['required'],
-            // 'image' => ['required'],
+            'item_image' => ['required'],
         ];
     }
 
     public function messages()
     {
         return [
-            'category.required' => 'カテゴリーを選択してください',
+            'parent_category.required' => 'カテゴリーを選択してください',
+            'child_category.required' => 'カテゴリーを選択してください',
             'condition.required' => '商品の状態を選択してください',
             'name.required' => '商品名を入力してください',
             'name.max' => '商品名を入力してください',
             'description.required' => '商品の説明を入力してください',
             'price.required' => '販売価格を入力してください',
-            'image.required' => '画像を選択してください',
+            'item_image.required' => '商品画像のアップロードは必須です',
         ];
     }
 }

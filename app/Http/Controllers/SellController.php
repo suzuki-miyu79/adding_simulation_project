@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\SellRequest;
 use App\Models\Item;
 use App\Models\ParentCategory;
+use App\Models\ChildCategory;
 use App\Models\Condition;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,8 +18,10 @@ class SellController extends Controller
         $parentCategories = ParentCategory::with('childCategories')->get();
         // 商品の状態を取得
         $conditions = Condition::all();
+        // すべての子カテゴリーを取得
+        $childCategories = ChildCategory::all();
 
-        return view('/sell', compact('parentCategories', 'conditions'));
+        return view('/sell', compact('parentCategories', 'conditions', 'childCategories'));
     }
 
     // カテゴリー1のIDを受け取り、関連するカテゴリー2を取得する

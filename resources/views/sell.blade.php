@@ -17,25 +17,38 @@
                     <label for="">商品画像</label>
                     <div class="form__group-input--img" id="preview-container">
                         <label>
-                            <input type="file" id="item_image" name="item_image" required
-                                onchange="previewImage(event)">画像を選択する
+                            <input type="file" id="item_image" name="item_image" onchange="previewImage(event)">画像を選択する
                         </label>
                     </div>
+                    @if ($errors->has('item_image'))
+                        <div class="error">
+                            {{ $errors->first('item_image') }}
+                        </div>
+                    @endif
                 </div>
                 <div class="form__group">
                     <p>商品の詳細</p>
                     <div class="line"></div>
                     <div class="form__group-input">
                         <label for="">カテゴリー</label>
-                        <select name="parent_category" id="parent_category">
+                        <select name="parent_category" id="parent_category" required>
                             <option value="">カテゴリー1を選択してください</option>
                             @foreach ($parentCategories as $parentCategory)
-                                <option value="{{ $parentCategory->id }}">{{ $parentCategory->name }}</option>
+                                <option value="{{ $parentCategory->id }}"
+                                    {{ old('parent_category') == $parentCategory->id ? 'selected' : '' }}>
+                                    {{ $parentCategory->name }}
+                                </option>
                             @endforeach
                         </select>
 
-                        <select name="child_category" id="child_category" disabled>
+                        <select name="child_category" id="child_category" required>
                             <option value="">カテゴリー2を選択してください</option>
+                            @foreach ($childCategories as $childCategory)
+                                <option value="{{ $childCategory->id }}"
+                                    {{ old('child_category') == $childCategory->id ? 'selected' : '' }}>
+                                    {{ $childCategory->name }}
+                                </option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="form__group-input">
@@ -43,7 +56,10 @@
                         <select id="condition" name="condition" required>
                             <option value="">選択してください</option>
                             @foreach ($conditions as $condition)
-                                <option value="{{ $condition->id }}">{{ $condition->name }}</option>
+                                <option value="{{ $condition->id }}"
+                                    {{ old('condition') == $condition->id ? 'selected' : '' }}>
+                                    {{ $condition->name }}
+                                </option>
                             @endforeach
                         </select>
                     </div>
@@ -53,15 +69,16 @@
                     <div class="line"></div>
                     <div class="form__group-input">
                         <label for="">商品名</label>
-                        <input type="text" id="name" name="name" required>
+                        <input type="text" id="name" name="name" value="{{ old('name') }}" required>
                     </div>
                     <div class="form__group-input">
                         <label for="">商品の説明</label>
-                        <input type="text" id="description" name="description" required>
+                        <input type="text" id="description" name="description" value="{{ old('description') }}"
+                            required>
                     </div>
                     <div class="form__group-input">
                         <label for="">ブランド名（任意）</label>
-                        <input type="text" id="brand" name="brand">
+                        <input type="text" id="brand" name="brand" value="{{ old('brand') }}">
                     </div>
                 </div>
                 <div class="form__group">
@@ -71,14 +88,9 @@
                         <label for="">販売価格</label>
                         <div class="price">
                             <span>&yen;</span>
-                            <input type="text" id="price" name="price" required>
+                            <input type="text" id="price" name="price" value="{{ old('price') }}" required>
                         </div>
                     </div>
-                </div>
-                <div class="form__error">
-                    @foreach ($errors->all() as $error)
-                        <span class="error">{{ $error }}</span>
-                    @endforeach
                 </div>
                 <div class="form__button">
                     <button class="form__button-submit">出品する</button>
@@ -120,6 +132,10 @@
                         var option = document.createElement('option');
                         option.value = childCategory.id;
                         option.text = childCategory.name;
+                        // フォームの再表示時に選択された値を保持する
+                        if (option.value == '{{ old('child_category') }}') {
+                            option.selected = true;
+                        }
                         childCategorySelect.appendChild(option);
                     });
                     // カテゴリー2の選択肢を有効にする
