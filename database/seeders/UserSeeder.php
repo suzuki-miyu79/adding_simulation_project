@@ -24,5 +24,15 @@ class UserSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+
+        // 一般ユーザーの作成
+        DB::table('users')->insert([
+            'name' => 'テスト 太郎',
+            'email' => 'test@abc.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('12345678'),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
     }
 }
