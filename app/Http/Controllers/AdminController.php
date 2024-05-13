@@ -8,10 +8,6 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
 use App\Models\User;
 use App\Models\Comment;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
 
 class AdminController extends Controller
 {

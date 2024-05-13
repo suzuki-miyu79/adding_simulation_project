@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Http\Requests\SellRequest;
 use App\Models\Item;
 use App\Models\ParentCategory;

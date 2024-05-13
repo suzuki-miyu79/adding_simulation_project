@@ -4,14 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Item;
-use App\Models\Purchase;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use Stripe\Stripe;
-use Stripe\PaymentIntent;
 
 class PurchaseController extends Controller
 {
+    // 購入ページ表示
     public function index($id)
     {
         $user = Auth::user(); // ログインしているユーザーの情報を取得
@@ -20,6 +18,7 @@ class PurchaseController extends Controller
         return view('purchase', compact('user', 'item'));
     }
 
+    // 住所の変更ページ表示
     public function showAddress($id)
     {
         $item = Item::findOrFail($id); // IDに対応する商品情報を取得
@@ -27,6 +26,7 @@ class PurchaseController extends Controller
         return view('address-change', compact('item'));
     }
 
+    // 配送先変更
     public function changeAddress(Request $request, $id)
     {
         $item = Item::findOrFail($id); // IDに対応する商品情報を取得
