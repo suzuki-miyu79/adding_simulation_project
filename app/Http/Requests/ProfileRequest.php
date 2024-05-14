@@ -47,7 +47,7 @@ class ProfileRequest extends FormRequest
     {
         return [
             'name.max' => 'ユーザー名は191文字以内で入力してください',
-            'postcode.regex' => 'ハイフンありの半角で8文字の郵便番号を入力してください',
+            'postcode.regex' => 'ハイフンを入れた8文字の郵便番号を入力してください',
             'address.max' => '住所は255文字以内で入力してください',
             'building_name.max' => '建物名は255文字以内で入力してください',
         ];

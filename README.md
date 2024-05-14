@@ -1,22 +1,22 @@
-# Rese（リーズ）
-- 飲食店予約システム
+# coachtechフリマ
+- ネットフリマサービス
 ![Rese-top](https://github.com/suzuki-miyu79/high_grade_simulation_project/assets/144597636/95f05a93-885b-44dd-aaa8-7ae9be5a0e95)
 
 ## 作成した目的
-- 機能や画面がシンプルで使いやすい飲食店予約サービスを提供するため。
+- coachtechブランドのアイテムを出品するため。
 
 ## アプリケーションURL
 開発環境：http://localhost/
 
-本番環境：http://57.180.65.95/
+本番環境：http://18.183.149.215/
 
 ### テスト用アカウント（開発・本番）
 [管理者アカウント]
 - メールアドレス：admin@abc.com
 - パスワード：12345678
 
-[店舗管理者アカウント]
-- メールアドレス：representative@abc.com
+[一般ユーザーアカウント]
+- メールアドレス：test@abc.com
 - パスワード：12345678
 
 ## 機能一覧
@@ -24,40 +24,32 @@
     - 会員登録
     - ログイン
     - ログアウト
-    - メール認証
-- 飲食店情報取得機能
-    - 飲食店一覧取得
-    - 飲食店詳細取得
+- 商品取得機能
+    - 商品一覧取得
+    - 商品詳細取得
+    - 商品お気に入り一覧取得
+- ユーザー情報取得機能
+    - 購入商品一覧取得
+    - 出品商品詳細取得
+    - プロフィール変更
 - お気に入り機能
     - お気に入り追加
     - お気に入り削除
-- 予約機能
-    - 予約情報追加
-    - 予約情報削除
-    - 予約情報変更
-- QRコード発行機能
-- 評価機能
-    - 五段階評価
-    - コメント送信
-- 決済機能
-- ユーザー情報取得機能
-    - ユーザーお気に入り一覧取得
-    - ユーザー予約情報取得
+- コメント機能
+    - コメント追加
 - 検索機能
-    - エリア検索
-    - ジャンル検索
-    - 店名検索
-- 管理機能（管理者）
-    - 店舗代表者作成
-- 管理機能（店舗代表者）
-    - 店舗情報作成
-    - 店舗情報変更
-    - 予約情報確認
+    - 商品名検索
+    - ユーザー名検索
+    - 作成日検索
+- 管理機能
+    - ユーザー情報削除
+    - コメント削除
 - メール送信機能
-- リマインダー機能
 - ストレージ保存機能
 - バリデーション
-- レスポンシブデザイン（768px）
+- レスポンシブデザイン（768px, 480px）
+- PHPUnitを使用したテスト機能
+- Circle CIを使用したデプロイとテストの自動化
 
 ## 使用技術（実行環境）
 ### プログラミング言語
@@ -81,12 +73,12 @@
 ### 1．Laravel Sailをインストール
 - Laravel sailをインストールするディレクトリに移動し、Laravel sailをインストールします。
   
-  curl -s "https://laravel.build/high_grade_simulation_project" | bash
+  curl -s "https://laravel.build/adding_simulation_project" | bash
 
 ### 2．Laravel sailを起動する
-- 「high_grade_simulation_project」ディレクトリへ移動し、Laravel sailを起動するコマンドを実行します。
+- 「adding_simulation_project」ディレクトリへ移動し、Laravel sailを起動するコマンドを実行します。
   
-  cd high_grade_simulation_project
+  cd adding_simulation_project
  
   ./vendor/bin/sail up
 
