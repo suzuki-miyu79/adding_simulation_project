@@ -1,6 +1,6 @@
 # coachtechフリマ
 - ネットフリマサービス
-![スクリーンショット 2024-05-14 123910](https://github.com/suzuki-miyu79/adding_simulation_project/assets/144597636/3eaf953c-1bbe-403d-b175-e03f9b6d30cd)
+![スクリーンショット 2024-05-14 140713](https://github.com/suzuki-miyu79/adding_simulation_project/assets/144597636/eb58b68a-1341-4c97-8caa-ca916819e26d)
 
 ## 作成した目的
 - coachtechブランドのアイテムを出品するため。
@@ -67,7 +67,7 @@
 ![テーブル設計](https://github.com/suzuki-miyu79/high_grade_simulation_project/assets/144597636/d8be949f-d4d5-46a6-b414-0d7a01b4c359)
 
 ## ER図
-![er_high_grade_simulation_project](https://github.com/suzuki-miyu79/high_grade_simulation_project/assets/144597636/ffa9993a-ca6c-41d3-805d-84185c413efa)
+![ECサイト-ER図 drawio](https://github.com/suzuki-miyu79/adding_simulation_project/assets/144597636/d00f9e34-f480-4a54-8462-58b31f70ace5)
 
 # 環境構築
 ### 1．Laravel Sailをインストール
