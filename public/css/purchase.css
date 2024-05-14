@@ -22,7 +22,7 @@
 }
 
 .purchase__img {
-    width: 30%;
+    width: 15%;
     aspect-ratio: 2 / 2.5;
     background-color: #D9D9D9;
     overflow: hidden;
@@ -74,6 +74,7 @@
 
 .payment-bottom select {
     padding: 0.5em 1em;
+    border-radius: 3px;
 }
 
 .attention {
@@ -116,6 +117,18 @@
 
 .info-title {
     font-weight: bold;
+}
+
+.stripe-input {
+    width: 15em;
+    padding: 0.5em 1em;
+    margin-bottom: 5px;
+    border: 1px solid #BBBBBB;
+    border-radius: 5px;
+}
+
+.cvc-info {
+    font-size: 0.8rem;
 }
 
 .purchase__button {

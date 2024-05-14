@@ -77,22 +77,20 @@
                     <dl class="form__dl">
                         <dt class="form__dt">カード番号</dt>
                         <dd class="form__dd">
-                            <div id="card-number"></div>
+                            <div id="card-number" class="stripe-input"></div>
                         </dd>
                     </dl>
                     <dl class="form__dl">
                         <dt class="form__dt">有効期限</dt>
                         <dd class="form__dd">
-                            <div id="card-expiry"></div>
+                            <div id="card-expiry" class="stripe-input"></div>
                         </dd>
                     </dl>
                     <dl class="form__dl">
                         <dt class="form__dt">セキュリティコード</dt>
                         <dd class="form__dd flex flex-wrap items-center">
-                            <div class="w-full sm:w-2/12">
-                                <div id="card-cvc"></div>
-                            </div>
-                            <div class="p-2 w-full sm:w-9/12">※カード背面の4桁または3桁の番号</div>
+                            <div id="card-cvc" class="stripe-input"></div>
+                            <div class="cvc-info">※カード背面の4桁または3桁の番号</div>
                         </dd>
                     </dl>
                     <div class="purchase__button">
