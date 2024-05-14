@@ -21,9 +21,10 @@ class PurchaseController extends Controller
     // 住所の変更ページ表示
     public function showAddress($id)
     {
+        $user = Auth::user(); // ログインしているユーザーの情報を取得
         $item = Item::findOrFail($id); // IDに対応する商品情報を取得
 
-        return view('address-change', compact('item'));
+        return view('address-change', compact('user', 'item'));
     }
 
     // 配送先変更
