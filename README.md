@@ -64,7 +64,7 @@
 - MySQL 8.0.32
 
 ## テーブル設計
-![テーブル設計](https://github.com/suzuki-miyu79/high_grade_simulation_project/assets/144597636/d8be949f-d4d5-46a6-b414-0d7a01b4c359)
+![スクリーンショット 2024-05-14 141431](https://github.com/suzuki-miyu79/adding_simulation_project/assets/144597636/f4318f76-5392-4463-99ac-f5bed00deae7)
 
 ## ER図
 ![ECサイト-ER図 drawio](https://github.com/suzuki-miyu79/adding_simulation_project/assets/144597636/d00f9e34-f480-4a54-8462-58b31f70ace5)
