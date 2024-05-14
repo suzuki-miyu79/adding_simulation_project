@@ -28,8 +28,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/purchase/{item_id}', [PurchaseController::class, 'index'])->name('purchase.index');
     // 購入処理
     Route::post('/purchase/{item_id}', [PurchaseController::class, 'purchase'])->name('purchase');
-    // 購入完了ページ
-    Route::get('/purchase/{item_id}/thanks', [PurchaseController::class, 'thanks'])->name('purchase.thanks');
     // 住所変更ページ
     Route::get('/purchase/address/{item_id}', [PurchaseController::class, 'showAddress'])->name('address');
     // 住所変更処理
