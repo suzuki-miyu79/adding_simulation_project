@@ -23,19 +23,19 @@ class Child_categorySeeder extends Seeder
             ],
             [
                 'parent_category_id' => 2,
-                'name' => '漫画、コミック',
+                'name' => 'スキンケア',
             ],
             [
                 'parent_category_id' => 2,
-                'name' => '雑誌',
+                'name' => 'メイクアップ',
             ],
             [
                 'parent_category_id' => 3,
-                'name' => 'テレビゲーム',
+                'name' => 'サプリメント',
             ],
             [
                 'parent_category_id' => 3,
-                'name' => 'カードゲーム',
+                'name' => 'マッサージ',
             ],
         ];
 

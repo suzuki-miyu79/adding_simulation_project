@@ -1,6 +1,6 @@
 # coachtechフリマ
 - ネットフリマサービス
-![Rese-top](https://github.com/suzuki-miyu79/high_grade_simulation_project/assets/144597636/95f05a93-885b-44dd-aaa8-7ae9be5a0e95)
+![スクリーンショット 2024-05-14 123910](https://github.com/suzuki-miyu79/adding_simulation_project/assets/144597636/3eaf953c-1bbe-403d-b175-e03f9b6d30cd)
 
 ## 作成した目的
 - coachtechブランドのアイテムを出品するため。

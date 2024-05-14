@@ -14,8 +14,8 @@ class Parent_categorySeeder extends Seeder
     {
         $parent_categories = [
             '洋服',
-            '本、雑誌',
-            'ゲーム',
+            '美容',
+            '健康',
         ];
 
         // データをテーブルに挿入
