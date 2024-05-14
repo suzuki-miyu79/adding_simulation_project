@@ -50,6 +50,9 @@ class ItemController extends Controller
             ->orWhereHas('childCategory', function ($query) use ($keyword) {
                 $query->where('name', 'like', '%' . $keyword . '%');
             })
+            ->orWhereHas('childCategory.parentCategory', function ($query) use ($keyword) {
+                $query->where('name', 'like', '%' . $keyword . '%');
+            })
             ->get();
 
         return view('search-results', compact('items', 'keyword'));
