@@ -20,28 +20,32 @@ class AdminController extends Controller
     // ユーザー管理ページ表示
     public function showUserManagement(Request $request)
     {
+        \Log::info('Search request:', $request->all());
+
         $users = User::query();
 
-        // 検索
         if ($request->has('search')) {
             $search = $request->input('search');
-            $users->where('name', 'like', "%$search%")
-                ->orWhere('email', 'like', "%$search%");
+            $users->where(function ($query) use ($search) {
+                $query->where('name', 'like', "%$search%")
+                    ->orWhere('email', 'like', "%$search%");
+            });
         }
 
-        // 日付検索
         if ($request->has('date')) {
             $date = $request->input('date');
             $users->whereDate('created_at', $date);
 
-            // 選択された日付をセッションに保存
             $request->session()->put('selected_date', $date);
         } else {
-            // セッションから日付を取得
             $date = $request->session()->get('selected_date');
+
+            if ($date) {
+                $users->whereDate('created_at', $date);
+            }
         }
 
-        $users = $users->paginate(10); // 1ページに10件ずつユーザーを取得
+        $users = $users->paginate(10);
 
         return view('admin.user-management', compact('users', 'date'));
     }
