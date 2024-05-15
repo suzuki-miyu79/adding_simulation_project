@@ -140,3 +140,48 @@
 - シーディングでダミーデータを作成します。
 
   ./vendor/bin/sail artisan db:seed
+
+### 8．ストレージ設定
+- アップロードした画像を格納するディレクトリを作成します。
+
+  touch storage/app/public/item_images
+  touch storage/app/public/profile_images
+
+- シンボリックリンクを設定します。
+
+  ./vendor/bin/sail artisan storage:link
+
+### 9．PHPUnitを使用したテストの実行
+- ダミーデータの準備
+- テストDBにマイグレーションを適用します。
+
+  ./vendor/bin/sail artisan migrate --database=mysql_test
+
+- シーディングを実行します。
+
+　./vendor/bin/sail artisan db:seed --database=mysql_test
+
+- テスト内容は、/tests配下のファイルを必要に応じて修正してください。
+- 実行するテストファイルは、phpunit.xml内で変更できます。
+
+- テストを実行します。
+
+　./vendor/bin/sail artisan test
+
+### 10．Circle CIを使用したデプロイとテストの自動化
+- config.ymlを修正します。
+  ```
+  deploy:
+        machine:
+            image: circleci/classic:edge
+        steps:
+            - checkout
+            - add_ssh_keys:
+                fingerprints:
+                  # CircleCI上でSSHキー登録を行った際に作成されるfingerprintsを記入！！
+                  - ××:××:××:××:××:××:××:××:××:××:××:××:××:××:××:××
+            #この箇所の［EC2上のプロジェクトパス］を自身のパスに書き換え！！
+            - run: ssh ${USER_NAME}@${HOST_NAME} 'cd ［EC2上のプロジェクトパス］ && git pull'
+  ```
+
+- Githubにて公開キーを登録し、Circle CI上で環境変数設定と秘密キーを登録してください。
