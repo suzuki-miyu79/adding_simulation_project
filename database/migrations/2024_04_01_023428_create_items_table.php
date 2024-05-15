@@ -19,7 +19,7 @@ return new class extends Migration {
             $table->text('description');
             $table->decimal('price', 10, 0);
             $table->string('image', 255);
-            $table->foreignId('seller_user_id')->constrained('users');
+            $table->foreignId('seller_user_id')->constrained('users')->onDelete('cascade');
             $table->timestamp('created_at')->useCurrent()->nullable();
             $table->timestamp('updated_at')->useCurrent()->nullable();
         });
