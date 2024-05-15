@@ -41,7 +41,7 @@
                             @endforeach
                         </select>
 
-                        <select name="child_category" id="child_category">
+                        <select name="child_category" id="child_category" required>
                             <option value="">カテゴリー2を選択してください</option>
                             @if (old('parent_category'))
                                 @foreach ($childCategories as $childCategory)
