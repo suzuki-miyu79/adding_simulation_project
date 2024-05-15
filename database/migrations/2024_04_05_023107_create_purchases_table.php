@@ -12,8 +12,8 @@ return new class extends Migration {
     {
         Schema::create('purchases', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('item_id')->constrained();
-            $table->foreignId('buyer_user_id')->constrained('users');
+            $table->foreignId('item_id')->constrained()->onDelete('cascade');
+            $table->foreignId('buyer_user_id')->constrained('users')->onDelete('cascade');
             $table->timestamp('created_at')->useCurrent()->nullable();
             $table->timestamp('updated_at')->useCurrent()->nullable();
         });
