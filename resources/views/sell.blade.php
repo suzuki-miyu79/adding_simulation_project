@@ -41,14 +41,16 @@
                             @endforeach
                         </select>
 
-                        <select name="child_category" id="child_category" required>
+                        <select name="child_category" id="child_category">
                             <option value="">カテゴリー2を選択してください</option>
-                            @foreach ($childCategories as $childCategory)
-                                <option value="{{ $childCategory->id }}"
-                                    {{ old('child_category') == $childCategory->id ? 'selected' : '' }}>
-                                    {{ $childCategory->name }}
-                                </option>
-                            @endforeach
+                            @if (old('parent_category'))
+                                @foreach ($childCategories as $childCategory)
+                                    <option value="{{ $childCategory->id }}"
+                                        {{ old('child_category') == $childCategory->id ? 'selected' : '' }}>
+                                        {{ $childCategory->name }}
+                                    </option>
+                                @endforeach
+                            @endif
                         </select>
                     </div>
                     <div class="form__group-input">
