@@ -52,38 +52,39 @@
                             @endif
                         </select>
                     </div>
-                    <div class="form__group">
-                        <p>商品名と説明</p>
-                        <div class="line"></div>
-                        <div class="form__group-input">
-                            <label for="">商品名</label>
-                            <input type="text" id="name" name="name" value="{{ old('name') }}" required>
-                        </div>
-                        <div class="form__group-input">
-                            <label for="">商品の説明</label>
-                            <input type="text" id="description" name="description" value="{{ old('description') }}"
-                                required>
-                        </div>
-                        <div class="form__group-input">
-                            <label for="">ブランド名（任意）</label>
-                            <input type="text" id="brand" name="brand" value="{{ old('brand') }}">
-                        </div>
+                </div>
+                <div class="form__group">
+                    <p>商品名と説明</p>
+                    <div class="line"></div>
+                    <div class="form__group-input">
+                        <label for="">商品名</label>
+                        <input type="text" id="name" name="name" value="{{ old('name') }}" required>
                     </div>
-                    <div class="form__group">
-                        <p>販売価格</p>
-                        <div class="line"></div>
-                        <div class="form__group-input">
-                            <label for="">販売価格</label>
-                            <div class="price">
-                                <span>&yen;</span>
-                                <input type="text" id="price" name="price" value="{{ old('price') }}" required>
-                            </div>
-                        </div>
+                    <div class="form__group-input">
+                        <label for="">商品の説明</label>
+                        <input type="text" id="description" name="description" value="{{ old('description') }}"
+                            required>
                     </div>
-                    <div class="form__button">
-                        <button class="form__button-submit">出品する</button>
+                    <div class="form__group-input">
+                        <label for="">ブランド名（任意）</label>
+                        <input type="text" id="brand" name="brand" value="{{ old('brand') }}">
                     </div>
                 </div>
+                <div class="form__group">
+                    <p>販売価格</p>
+                    <div class="line"></div>
+                    <div class="form__group-input">
+                        <label for="">販売価格</label>
+                        <div class="price">
+                            <span>&yen;</span>
+                            <input type="text" id="price" name="price" value="{{ old('price') }}" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="form__button">
+                    <button class="form__button-submit">出品する</button>
+                </div>
+            </div>
         </form>
     </div>
 
