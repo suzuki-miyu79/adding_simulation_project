@@ -186,10 +186,10 @@
             - run: ssh ${USER_NAME}@${HOST_NAME} 'cd ［EC2上のプロジェクトパス］ && git pull'
   ```
 
-  - Gitにローカルからプッシュした段階でconfig.yml内で定義したbuild, deployが実行されます。
+- Gitにローカルからプッシュした段階でconfig.yml内で定義したbuild, deployが実行されます。
 
-    git add -A
+  git add -A
 
-    git commit -m "コメント"
+  git commit -m "コメント"
 
-    git push
+  git push
