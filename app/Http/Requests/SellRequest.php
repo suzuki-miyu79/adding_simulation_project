@@ -42,7 +42,7 @@ class SellRequest extends FormRequest
             'name.max' => '商品名を入力してください',
             'description.required' => '商品の説明を入力してください',
             'price.required' => '販売価格を入力してください',
-            'item_image.required' => '商品画像のアップロードは必須です',
+            'item_image.required' => '商品画像は必須です',
         ];
     }
 }
