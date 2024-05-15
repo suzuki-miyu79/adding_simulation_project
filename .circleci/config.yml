@@ -2,12 +2,17 @@ version: 2
 jobs:
     build:
         docker:
-            - image: alpine
+            # Specify the version you desire here
+            - image: circleci/php:7.3-node-browsers
         steps:
             - checkout
+            - run: sudo composer self-update --1
+            - run: composer install -n --prefer-dist
+            - run: npm ci
+            - run: npm run dev
             - run:
-                name: Echo Test
-                command: echo "CircleCI Test"
+                name: php test
+                command: vendor/bin/phpunit
     deploy:
         machine:
             image: circleci/classic:edge
