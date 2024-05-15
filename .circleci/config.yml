@@ -2,7 +2,7 @@ version: 2
 jobs:
     build:
         docker:
-            - image: alpine
+            - image: httpd
         steps:
             - checkout
             - run:
@@ -18,7 +18,7 @@ jobs:
                 fingerprints:
                   # CircleCI上でSSHキー登録を行った際に作成されるfingerprintsを記入
                   - SHA256:Cuu7n4ZW0VoYUNbUb+qbchCcmYQO/Ws5yh158YHiO5U
-            #この箇所の［EC2上のプロジェクトパス］を自身のパスに書き換え
+            #この箇所の［/var/www/adding_simulation_project/］を自身のパスに書き換え
             - run: ssh ${USER_NAME}@${HOST_NAME} 'cd /var/www/adding_simulation_project/ && git pull'
 
 workflows:
