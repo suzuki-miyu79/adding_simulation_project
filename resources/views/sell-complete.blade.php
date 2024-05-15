@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="complete">
-        <p>出品が完了しました。</p>
+        <p class="complete-sell">出品が完了しました。</p>
         <a href="/">トップページに戻る</a>
     </div>
 @endsection

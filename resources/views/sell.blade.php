@@ -14,7 +14,7 @@
             @csrf
             <div class="sell-form">
                 <div class="form__group">
-                    <label for="">商品画像</label>
+                    <label for="item_image">商品画像</label>
                     <div class="form__group-input--img" id="preview-container">
                         <label>
                             <input type="file" id="item_image" name="item_image" onchange="previewImage(event)">画像を選択する
@@ -52,21 +52,30 @@
                             @endif
                         </select>
                     </div>
+                    <div class="form__group-input">
+                        <label for="condition">商品の状態</label>
+                        <select id="condition" name="condition" required>
+                            <option value="">選択してください</option>
+                            @foreach ($conditions as $condition)
+                                <option value="{{ $condition->id }}">{{ $condition->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
                 <div class="form__group">
                     <p>商品名と説明</p>
                     <div class="line"></div>
                     <div class="form__group-input">
-                        <label for="">商品名</label>
+                        <label for="name">商品名</label>
                         <input type="text" id="name" name="name" value="{{ old('name') }}" required>
                     </div>
                     <div class="form__group-input">
-                        <label for="">商品の説明</label>
+                        <label for="description">商品の説明</label>
                         <input type="text" id="description" name="description" value="{{ old('description') }}"
                             required>
                     </div>
                     <div class="form__group-input">
-                        <label for="">ブランド名（任意）</label>
+                        <label for="brand">ブランド名（任意）</label>
                         <input type="text" id="brand" name="brand" value="{{ old('brand') }}">
                     </div>
                 </div>
@@ -74,7 +83,7 @@
                     <p>販売価格</p>
                     <div class="line"></div>
                     <div class="form__group-input">
-                        <label for="">販売価格</label>
+                        <label for="price">販売価格</label>
                         <div class="price">
                             <span>&yen;</span>
                             <input type="text" id="price" name="price" value="{{ old('price') }}" required>
