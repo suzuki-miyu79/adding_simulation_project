@@ -170,8 +170,8 @@
 　./vendor/bin/sail artisan test
 
 ### 10．Circle CIを使用したデプロイとテストの自動化
-- Githubにて公開キーを登録し、Circle CI上で環境変数設定と秘密キーを登録してください。
-- config.ymlを修正します。
+- GithubにてEC2で作成した公開キーを登録し、Circle CI上で環境変数設定とEC2インスタンスの秘密キーを登録してください。
+- config.ymlを修正してください。
   ```
   deploy:
         machine:
