@@ -185,3 +185,11 @@
             #この箇所の［EC2上のプロジェクトパス］を自身のパスに書き換え！！
             - run: ssh ${USER_NAME}@${HOST_NAME} 'cd ［EC2上のプロジェクトパス］ && git pull'
   ```
+
+  - Gitにローカルからプッシュした段階でconfig.yml内で定義したbuild, deployが実行されます。
+
+    git add -A
+
+    git commit -m "コメント"
+
+    git push
