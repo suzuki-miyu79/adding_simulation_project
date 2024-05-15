@@ -154,7 +154,6 @@
   ./vendor/bin/sail artisan storage:link
 
 ### 9．PHPUnitを使用したテストの実行
-- ダミーデータの準備
 - テストDBにマイグレーションを適用します。
 
   ./vendor/bin/sail artisan migrate --database=mysql_test
