@@ -145,6 +145,7 @@
 - アップロードした画像を格納するディレクトリを作成します。
 
   touch storage/app/public/item_images
+
   touch storage/app/public/profile_images
 
 - シンボリックリンクを設定します。
@@ -169,6 +170,7 @@
 　./vendor/bin/sail artisan test
 
 ### 10．Circle CIを使用したデプロイとテストの自動化
+- Githubにて公開キーを登録し、Circle CI上で環境変数設定と秘密キーを登録してください。
 - config.ymlを修正します。
   ```
   deploy:
@@ -183,5 +185,3 @@
             #この箇所の［EC2上のプロジェクトパス］を自身のパスに書き換え！！
             - run: ssh ${USER_NAME}@${HOST_NAME} 'cd ［EC2上のプロジェクトパス］ && git pull'
   ```
-
-- Githubにて公開キーを登録し、Circle CI上で環境変数設定と秘密キーを登録してください。
